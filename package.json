@@ -1,0 +1,26 @@
+{
+  "name": "instant-chefs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "check": "astro check",
+    "verify": "node scripts/verify.mjs",
+    "format": "prettier --write src scripts astro.config.mjs package.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/fredoka": "^5.2.0",
+    "@fontsource-variable/manrope": "^5.2.0",
+    "@fontsource/caveat": "^5.2.0",
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
+    "typescript": "^5.9.0"
+  }
+}

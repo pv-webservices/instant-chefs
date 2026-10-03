@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import { business } from '../data/business';
+---
+
+<Base
+  title="Contact Us — Let’s Find Your Chef"
+  description="Call Instant Chefs on +91 8448496343, chat on WhatsApp or prepare a staffing enquiry. Visit our office at WorkWorm, Sector 32, Faridabad, Haryana."
+  cta={false}
+>
+  <PageHero
+    label="Let’s talk"
+    title="Your next great hire starts with a hello."
+    text="A busy kitchen, a new café or a home that needs a helping hand. Tell us what you’re looking for — we’re here to listen."
+    image="chef-cta"
+    imageAlt="Smiling chef giving a thumbs up"
+  />
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">
+          <span></span>REAL PEOPLE. READY TO HELP.
+        </span>
+        <h2 style="margin-top:15px">
+          Good conversations.
+          <br />
+          Better matches.
+        </h2>
+        <p style="font-size:13px">
+          Speak to the team about your role, cuisine and location. We offer 24/7
+          real-time hiring support.
+        </p>
+        <div class="contact-method">
+          <Icon name="phone" size={24} />
+          <div>
+            <h3>Give us a call</h3>
+            <a href={business.tel}>{business.phone}</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <Icon name="chat" size={24} />
+          <div>
+            <h3>Start a conversation</h3>
+            <a
+              href={business.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Chat with us on WhatsApp <Icon name="northeast" size={14} />
+            </a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <Icon name="mail" size={24} />
+          <div>
+            <h3>Drop us a line</h3>
+            <a href={`mailto:${business.email}`}>{business.email}</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <Icon name="instagram" size={24} />
+          <div>
+            <h3>Find us on Instagram</h3>
+            <a
+              href={business.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @instantchefs <Icon name="northeast" size={14} />
+            </a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <Icon name="pin" size={24} />
+          <div>
+            <h3>Visit our office</h3>
+            <address>{business.address}</address>
+            <a
+              class="text-link"
+              href={business.directions}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get directions <Icon name="northeast" size={16} />
+            </a>
+            <p style="font-size:11px;margin-top:8px">
+              Call ahead to coordinate your visit.
+            </p>
+          </div>
+        </div>
+        <div class="notice">
+          <p>
+            <strong>Looking for domestic staff?</strong> Ask us about maid or
+            gardener requirements. The team will confirm availability, fees and
+            service terms.
+          </p>
+        </div>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</Base>

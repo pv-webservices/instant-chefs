@@ -1,0 +1,17 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  text?: string;
+  centered?: boolean;
+  light?: boolean;
+  id?: string;
+}
+const { label, title, text, centered = false, light = false, id } = Astro.props;
+---
+
+<div class:list={['ic-heading', { centered, light }]} data-reveal>
+  <span class="ic-kicker">{label}</span>
+  <h2 id={id}>{title}</h2>
+  {text && <p>{text}</p>}
+</div>

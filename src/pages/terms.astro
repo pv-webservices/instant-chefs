@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { business } from '../data/business';
+---
+
+<Base
+  title="Terms & Conditions"
+  description="Read Instant Chefs service terms covering chef hiring plans, advance payment, trials, non-refundable fees after hiring and replacement support."
+  cta={false}
+>
+  <PageHero
+    label="Terms & conditions"
+    title="Clear expectations. From the start."
+    text="These published service details are based on the client’s onboarding information. Confirm your specific requirement and selected plan with the team before payment."
+  />
+  <section class="section">
+    <article class="container legal-content">
+      <h2>Our staffing services</h2>
+      <p>
+        Instant Chefs assists restaurants, cafés, cloud kitchens, bakeries,
+        long-term catering businesses and households needing a full-time live-in
+        home chef. Maid and gardener requirements can also be discussed.
+        Candidate suitability and availability are confirmed by the team for
+        each requirement.
+      </p>
+      <h2>Hiring process</h2>
+      <p>
+        Share the staff type, cuisine, experience and salary range. Instant
+        Chefs shortlists suitable chefs and arranges direct interviews with
+        approximately 2–3 candidates. You choose a chef for a one-day trial.
+        Hire if satisfied, or request another suitable candidate for a trial.
+        You can try up to five chefs before making your final staff choice.
+      </p>
+      <h2>Published hiring plans</h2>
+      <ul>
+        <li>Six-month chef hiring plan: ₹7,000 one-time service fee.</li>
+        <li>Twelve-month chef hiring plan: ₹10,000 one-time service fee.</li>
+        <li>Six-month home cook hiring plan: ₹15,000 one-time service fee.</li>
+        <li>
+          Twelve-month home cook hiring plan: ₹20,000 one-time service fee.
+        </li>
+      </ul>
+      <p>
+        The listed figures are service fees. Discuss the candidate’s salary
+        separately. Confirm any applicable taxes and the details of your
+        selected plan before paying. Domestic staff fees and terms are confirmed
+        separately; these published plans do not automatically cover maid or
+        gardener hiring.
+      </p>
+      <h2>Advance payment</h2>
+      <p>
+        <strong>
+          Payment is collected in advance, before the trial begins.
+        </strong>{' '}
+        Confirm the requirement, selected plan and payment arrangements directly
+        with the team.
+      </p>
+      <h2>Non-refundable fees after hiring</h2>
+      <p>
+        <strong>
+          Service fees are non-refundable after the candidate is hired.
+        </strong>{' '}
+        The supplied terms do not specify a refund policy for every situation
+        before hiring. Ask the team for clarification before payment if that is
+        relevant to your decision.
+      </p>
+      <h2>What the service fee covers</h2>
+      <ul>
+        <li>Sourcing and shortlisting suitable chefs.</li>
+        <li>Hiring coordination and up to five chef trials.</li>
+        <li>Support throughout the hiring period.</li>
+        <li>Free chef replacements within the selected plan duration.</li>
+      </ul>
+      <h2>Replacement support</h2>
+      <p>
+        If your chef is not working out, contact the team to discuss a suitable
+        replacement. Free chef replacements apply within the duration of your
+        selected hiring plan. Specific availability, coordination and joining
+        arrangements are discussed with the team.
+      </p>
+      <h2>Your hiring decision</h2>
+      <p>
+        Direct interviews and a practical trial help you assess whether a
+        candidate is suitable for your kitchen. Discuss duties, schedule,
+        salary, food requirements and any live-in arrangements with the
+        candidate and the team before final selection.
+      </p>
+      <h2>Website enquiries</h2>
+      <p>
+        The enquiry form prepares a message for your review. It does not book a
+        candidate, make a payment or confirm a hire. Sending a WhatsApp message
+        or email begins a conversation with the team.
+      </p>
+      <h2>Contact for clarification</h2>
+      <p>
+        For service questions or clarification of terms, call{' '}
+        <a href={business.tel}>{business.phone}</a> or email{' '}
+        <a href={`mailto:${business.email}`}>{business.email}</a>.
+      </p>
+    </article>
+  </section>
+</Base>

@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base
+  title="Page Not Found"
+  description="This Instant Chefs page could not be found. Explore our staffing services or contact the team."
+  cta={false}
+>
+  <section class="section warm-section">
+    <div class="container" style="text-align:center;padding-block:50px">
+      <span class="eyebrow">404 · A WRONG TURN, NOT A WRONG KITCHEN</span>
+      <h1 style="margin:20px auto;max-width:700px">
+        Let’s get you back
+        <br />
+        to the good stuff.
+      </h1>
+      <p style="margin-bottom:28px">
+        This page isn’t on the menu. Our team is still here to help.
+      </p>
+      <div class="button-row" style="justify-content:center">
+        <a href="/" class="button">
+          Back to home <Icon name="arrow" size={18} />
+        </a>
+        <a href="/contact/" class="button button-outline">
+          Talk to our team
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,149 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PricingCards from '../components/PricingCards.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import Icon from '../components/Icon.astro';
+import { plans, faqs } from '../data/business';
+const questions = [faqs[5], faqs[6], faqs[7], faqs[4]];
+---
+
+<Base
+  title="Chef & Home Cook Hiring Plans — Transparent Pricing"
+  description="Chef hiring: ₹7,000 for six months or ₹10,000 for twelve. Home cook hiring: ₹15,000 or ₹20,000. One-time service fees, trials and plan support."
+  faq={questions}
+>
+  <PageHero
+    label="Plans & pricing"
+    title="The right people. A clear price."
+    text="One-time service fees for chef and home cook hiring, with support that stays with you through your selected plan."
+    image="chef-portrait"
+    imageAlt="Smiling chef in a white uniform in a restaurant kitchen"
+  />
+  <section class="section pricing-section">
+    <div class="container">
+      <h2 class="sr-only">Choose your hiring plan</h2>
+      <PricingCards />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        label="WHAT YOU’RE CHOOSING"
+        title="Different durations. The same care."
+        text="Choose a chef or home cook plan and the period of support you need. Fees below are one-time service fees."
+      />
+      <div
+        class="table-wrap"
+        tabindex="0"
+        role="region"
+        aria-label="Hiring plan comparison, scroll horizontally to see all plans"
+      >
+        <table class="comparison-table">
+          <caption>Chef and home cook hiring plan comparison</caption>
+          <thead>
+            <tr>
+              <th scope="col">Service inclusion</th>
+              {plans.map((plan) => (
+                <th scope="col">
+                  {plan.name}
+                  <br />
+                  <span style="font-weight:500">{plan.months} months</span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">One-time fee</th>
+              {plans.map((plan) => (
+                <td>₹{plan.fee.toLocaleString('en-IN')}</td>
+              ))}
+            </tr>
+            <tr>
+              <th scope="row">Support duration</th>
+              {plans.map((plan) => (
+                <td>{plan.months} months</td>
+              ))}
+            </tr>
+            {[
+              'Sourcing & shortlisting',
+              'Hiring coordination',
+              'Up to five chef trials',
+              'Ongoing support',
+              'Free chef replacements during plan',
+            ].map((row) => (
+              <tr>
+                <th scope="row">{row}</th>
+                {plans.map(() => (
+                  <td>
+                    <Icon name="check" size={18} />
+                    <span class="sr-only">Included</span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section class="section process-section">
+    <div class="container">
+      <SectionHeading
+        label="PLEASE READ BEFORE PROCEEDING"
+        title="Payment terms, with nothing tucked away."
+      />
+      <div class="detail-grid">
+        <article class="detail-card" data-reveal>
+          <Icon name="clock" size={30} />
+          <h3>Paid before the trial</h3>
+          <p>
+            The service fee is collected in advance before the chef trial
+            begins. Confirm your selected plan and the applicable terms with the
+            team before making a payment.
+          </p>
+        </article>
+        <article class="detail-card" data-reveal>
+          <Icon name="shield" size={30} />
+          <h3>Non-refundable after hiring</h3>
+          <p>
+            Once a candidate has been hired, the service fee is non-refundable.
+            Ask the team to clarify any situation before hiring that is not
+            covered by these published terms.
+          </p>
+        </article>
+        <article class="detail-card" data-reveal>
+          <Icon name="refresh" size={30} />
+          <h3>Replacements within the plan</h3>
+          <p>
+            Chef replacements carry no additional service fee within your
+            selected plan duration. Contact our team if your chef is not working
+            out so we can help coordinate a suitable replacement.
+          </p>
+        </article>
+      </div>
+      <div class="notice">
+        <p>
+          <strong>
+            Service fee and candidate salary are different requirements.
+          </strong>{' '}
+          Share your preferred salary range during consultation and discuss the
+          candidate’s salary separately. Fees, taxes if applicable, availability
+          and terms for domestic staff should be confirmed with the team before
+          payment.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container faq-grid">
+      <SectionHeading
+        label="LET’S MAKE IT CLEAR"
+        title="A few questions about plans."
+      />
+      <FAQAccordion items={questions} />
+    </div>
+  </section>
+</Base>

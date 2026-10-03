@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import Icon from '../components/Icon.astro';
+import { faqs, business } from '../data/business';
+---
+
+<Base
+  title="Frequently Asked Questions About Chef Hiring"
+  description="Answers about chef interviews, one-day trials, hiring plans, advance payment, replacements and contacting Instant Chefs."
+  faq={faqs}
+>
+  <PageHero
+    label="Frequently asked questions"
+    title="A little clarity before your next hire."
+    text="From finding a candidate to choosing your plan, here are the details that help you take the next step."
+    image="trial"
+    imageAlt="Restaurant owner tasting a dish during a chef trial"
+  />
+  <section class="section">
+    <div class="container">
+      <div class="faq-page">
+        <h2 class="sr-only">Answers to your chef hiring questions</h2>
+        <FAQAccordion />
+        <div class="notice">
+          <p>
+            <strong>Have a more specific question?</strong> Your kitchen is
+            unique. Call <a href={business.tel}>{business.phone}</a> or{' '}
+            <a href="/contact/" class="text-link">
+              talk to our team <Icon name="arrow" size={16} />
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

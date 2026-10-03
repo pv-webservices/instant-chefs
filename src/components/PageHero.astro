@@ -1,0 +1,55 @@
+---
+import Breadcrumb from './Breadcrumb.astro';
+import Picture from './Picture.astro';
+import Icon from './Icon.astro';
+interface Props {
+  label: string;
+  title: string;
+  text: string;
+  image?: string;
+  imageAlt?: string;
+  cta?: string;
+  parent?: { title: string; href: string };
+}
+const { label, title, text, image, imageAlt, cta, parent } = Astro.props;
+---
+
+<section class:list={['ic-page-hero', { 'has-image': image }]}>
+  <span class="ic-blob ic-blob-a" aria-hidden="true"></span>
+  <span class="ic-blob ic-blob-b" aria-hidden="true"></span>
+  <div class="container">
+    <Breadcrumb title={label} parent={parent} />
+    <div class="ic-page-hero-inner">
+      <div class="ic-page-hero-copy">
+        <span class="ic-kicker">{label}</span>
+        <h1>{title}</h1>
+        <p>{text}</p>
+        {cta && (
+          <div class="ic-btn-row">
+            <a class="btn" href="/contact/">
+              <span>{cta}</span>
+              <Icon name="arrow" size={18} />
+            </a>
+            <a class="btn btn-outline" href="/plans/">
+              <span>View plans</span>
+            </a>
+          </div>
+        )}
+      </div>
+      {image && (
+        <div class="ic-page-hero-photo" data-parallax="0.06">
+          <Picture
+            name={image}
+            alt={imageAlt || label}
+            eager
+            sizes="(max-width: 800px) 100vw, 45vw"
+          />
+          <span class="ic-page-hero-badge">
+            <Icon name="shield" size={20} />
+            Verified &amp; trial-ready
+          </span>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Picture from '../components/Picture.astro';
+import Icon from '../components/Icon.astro';
+import { cuisines } from '../data/business';
+---
+
+<Base
+  title="Cuisines & Chef Expertise"
+  description="Find chefs with Indian, Chinese, Tandoor, Bakery, Continental and South Indian expertise. Match your menu to a suitable chef with Instant Chefs."
+>
+  <PageHero
+    label="Cuisine expertise"
+    title="Good taste starts with the right skills."
+    text="From the comfort of familiar dishes to the craft of your signature menu, we help you find a chef with relevant cuisine expertise."
+    image="more-cuisines"
+    imageAlt="A spread of multi-cuisine dishes on a wooden table"
+  />
+  <section class="section">
+    <div class="container">
+      <div class="cuisine-detail-grid">
+        {cuisines.map((cuisine) => (
+          <article
+            class="cuisine-detail"
+            id={cuisine.name.toLowerCase().replaceAll(' ', '-')}
+            data-reveal
+          >
+            <div class="cuisine-card">
+              <Picture
+                name={cuisine.image}
+                alt={`${cuisine.name} food, representative cuisine photograph`}
+              />
+              <div>
+                <h2 style="font-size:30px">{cuisine.name}</h2>
+                <Icon name="utensils" size={24} />
+              </div>
+            </div>
+            <p>
+              {cuisine.text} Tell us about the dishes you serve, the role and
+              the experience you need.
+            </p>
+            <a
+              href={`/contact/?cuisine=${encodeURIComponent(cuisine.name)}`}
+              class="text-link"
+            >
+              Find a {cuisine.name} chef <Icon name="arrow" size={17} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section process-section">
+    <div class="container split-content">
+      <SectionHeading
+        label="YOUR MENU IS THE STARTING POINT"
+        title="More than a cuisine on a résumé."
+        text="Tell us what your kitchen actually needs. A direct interview and one-day chef trial help you assess the skills behind the shortlist."
+      />
+      <div>
+        <ul class="check-list">
+          <li>
+            <Icon name="check" size={20} />
+            Share your menu and cuisine requirements
+          </li>
+          <li>
+            <Icon name="check" size={20} />
+            Discuss the experience level and salary range
+          </li>
+          <li>
+            <Icon name="check" size={20} />
+            Interview suitable candidates directly
+          </li>
+          <li>
+            <Icon name="check" size={20} />
+            Assess your chosen chef in a practical trial
+          </li>
+        </ul>
+        <div class="notice">
+          <p>
+            Looking for another cuisine or a particular dish?{' '}
+            <a href="/contact/" class="text-link">
+              Discuss it with us <Icon name="arrow" size={16} />
+            </a>{' '}
+            The team will confirm candidate suitability and availability.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

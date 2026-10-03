@@ -1,0 +1,143 @@
+---
+import '../styles/fonts.css';
+import headingFont from '@fontsource-variable/fredoka/files/fredoka-latin-wght-normal.woff2?url';
+import bodyFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+import '../styles/theme.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { business } from '../data/business';
+interface Props {
+  title: string;
+  description: string;
+  cta?: boolean;
+  faq?: { q: string; a: string }[];
+}
+const { title, description, cta = true, faq } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const isProductionDomain = Astro.site?.protocol === 'https:';
+const breadcrumbs = Astro.url.pathname.split('/').filter(Boolean);
+const schema: object[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: business.name,
+    url: Astro.site?.href,
+    telephone: '+918448496343',
+    email: business.email,
+    image: new URL('/images/brand.webp', Astro.site).href,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress:
+        'WorkWorm co-working space, Metro Station Pillar No. 539, 13B, near NHPC Chowk, Block A, DLF Industrial Area, Sector 32',
+      addressLocality: 'Faridabad',
+      addressRegion: 'Haryana',
+      postalCode: '121003',
+      addressCountry: 'IN',
+    },
+    sameAs: [business.instagram],
+  },
+];
+if (breadcrumbs.length)
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: Astro.site?.href,
+      },
+      ...breadcrumbs.map((crumb, i) => ({
+        '@type': 'ListItem',
+        position: i + 2,
+        name: crumb.replaceAll('-', ' '),
+        item: new URL(
+          '/' + breadcrumbs.slice(0, i + 1).join('/') + '/',
+          Astro.site,
+        ).href,
+      })),
+    ],
+  });
+if (faq)
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  });
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href={headingFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={bodyFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Instant Chefs</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f26a10" />
+    <meta
+      name="robots"
+      content={isProductionDomain ? 'index, follow' : 'noindex, nofollow'}
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/images/logo-mark-128.webp" type="image/webp" />
+    <link rel="apple-touch-icon" href="/images/logo-mark-256.webp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Instant Chefs" />
+    <meta property="og:title" content={`${title} | Instant Chefs`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta
+      property="og:image"
+      content={new URL('/images/brand.webp', Astro.site)}
+    />
+    <meta property="og:image:alt" content="Instant Chefs logo" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={`${title} | Instant Chefs`} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content={new URL('/images/brand.webp', Astro.site)}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schema).replaceAll('<', '\u003c')}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <div id="header-sentinel" aria-hidden="true"></div>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+      {cta && <ContactCTA />}
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/motion.ts';
+    </script>
+  </body>
+</html>

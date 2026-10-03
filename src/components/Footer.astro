@@ -1,0 +1,150 @@
+---
+import Icon from './Icon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { business, navigation, services } from '../data/business';
+const whatsappText = encodeURIComponent(
+  'Hi Instant Chefs! I would like to discuss a staffing requirement.',
+);
+---
+
+<footer class="ic-footer">
+  <h2 class="sr-only">Instant Chefs website information</h2>
+  <div class="ic-footer-glow" aria-hidden="true"></div>
+  <div class="container ic-footer-grid">
+    <div class="ic-footer-brand">
+      <a class="ic-brand" href="/" aria-label="Instant Chefs home">
+        <img
+          src="/images/logo-mark-128.webp"
+          srcset="/images/logo-mark-128.webp 1x, /images/logo-mark-256.webp 2x"
+          width="64"
+          height="64"
+          alt="Instant Chefs logo"
+          loading="lazy"
+        />
+        <span>
+          INSTANT <strong>CHEFS</strong>
+          <small>Hire smart. Hire Instant Chefs.</small>
+        </span>
+      </a>
+      <p>
+        Trained and verified chefs and domestic staff for restaurants, cafés,
+        cloud kitchens, bakeries, catering businesses and homes.
+      </p>
+      <div class="ic-socials">
+        <a
+          href={business.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instant Chefs on Instagram"
+        >
+          <Icon name="instagram" size={19} />
+        </a>
+        <a
+          href={`${business.whatsapp}?text=${whatsappText}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat with Instant Chefs on WhatsApp"
+        >
+          <WhatsAppIcon size={18} />
+        </a>
+        <a href={`mailto:${business.email}`} aria-label="Email Instant Chefs">
+          <Icon name="mail" size={19} />
+        </a>
+        <a href={business.tel} aria-label="Call Instant Chefs">
+          <Icon name="phone" size={18} />
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Quick links</h3>
+      <ul>
+        {navigation.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+        <li>
+          <a href="/cuisines/">Cuisines</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>Services</h3>
+      <ul>
+        {services.map((service) => (
+          <li>
+            <a href={`/services/${service.slug}/`}>{service.name}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="ic-footer-contact">
+      <h3>Get in touch</h3>
+      <a href={business.tel}>
+        <Icon name="phone" size={17} />
+        {business.phone}
+      </a>
+      <a href={`mailto:${business.email}`}>
+        <Icon name="mail" size={17} />
+        {business.email}
+      </a>
+      <a href={business.instagram} target="_blank" rel="noopener noreferrer">
+        <Icon name="instagram" size={17} />
+        @instantchefs
+      </a>
+      <h3>Our office</h3>
+      <a
+        href={business.directions}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ic-footer-address"
+      >
+        <Icon name="pin" size={17} />
+        <address>{business.address}</address>
+      </a>
+      <span class="handwritten ic-footer-hand">
+        Serving people who serve great food ♥
+      </span>
+    </div>
+  </div>
+  <div class="container ic-footer-bottom">
+    <span>
+      © {new Date().getFullYear()} Instant Chefs. All rights reserved.
+    </span>
+    <div>
+      <a href="/privacy-policy/">Privacy policy</a>
+      <a href="/terms/">Terms &amp; conditions</a>
+      <a href="/faq/">FAQ</a>
+    </div>
+  </div>
+</footer>
+<nav aria-label="WhatsApp contact">
+  <a
+    class="ic-float-chat"
+    href={`${business.whatsapp}?text=${whatsappText}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with Instant Chefs on WhatsApp"
+  >
+    <WhatsAppIcon size={30} />
+    <span class="ic-float-ping" aria-hidden="true"></span>
+  </a>
+</nav>
+<nav class="ic-mobile-bar" aria-label="Quick contact">
+  <a href={business.tel}>
+    <Icon name="phone" size={19} />
+    Call
+  </a>
+  <a
+    href={`${business.whatsapp}?text=${whatsappText}`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <WhatsAppIcon size={19} />
+    WhatsApp
+  </a>
+  <a href="/contact/" class="ic-mobile-bar-cta">
+    <Icon name="chef" size={19} />
+    Hire a chef
+  </a>
+</nav>

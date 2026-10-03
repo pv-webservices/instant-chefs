@@ -1,0 +1,551 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e6]:
+      - link [ref=e8] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e9]:
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "Home" [ref=e12] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e13]:
+            - link "About Us" [ref=e14] [cursor=pointer]:
+              - /url: about.php
+          - listitem [ref=e15]:
+            - link "Products " [ref=e16] [cursor=pointer]:
+              - /url: javascript:;
+              - text: Products
+              - generic [ref=e17]: 
+            - list [ref=e18]:
+              - listitem [ref=e19]:
+                - link "O-Rings" [ref=e20] [cursor=pointer]:
+                  - /url: o-rings.php
+              - listitem [ref=e21]:
+                - link "Gaskets" [ref=e22] [cursor=pointer]:
+                  - /url: gaskets.php
+              - listitem [ref=e23]:
+                - link "Bushes" [ref=e24] [cursor=pointer]:
+                  - /url: bushes.php
+              - listitem [ref=e25]:
+                - link "Bellows" [ref=e26] [cursor=pointer]:
+                  - /url: bellows.php
+              - listitem [ref=e27]:
+                - link "Moulded Parts" [ref=e28] [cursor=pointer]:
+                  - /url: moulded-parts.php
+              - listitem [ref=e29]:
+                - link "Custom Parts" [ref=e30] [cursor=pointer]:
+                  - /url: custom-parts.php
+          - listitem [ref=e31]:
+            - link "Contact Us" [ref=e32] [cursor=pointer]:
+              - /url: contact.php
+          - link "GET A QUOTE" [ref=e33] [cursor=pointer]:
+            - /url: contact.php
+        - list [ref=e35]:
+          - listitem [ref=e36]:
+            - link "" [ref=e37] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e38]:
+            - link "" [ref=e39] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e40]:
+            - link "" [ref=e41] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e42]:
+            - link "" [ref=e43] [cursor=pointer]:
+              - /url: javascript:void(0);
+  - generic [ref=e44]:
+    - generic [ref=e45]:
+      - generic [ref=e48]:
+        - heading "Precision Rubber Components Manufacturer" [level=1] [ref=e49]
+        - paragraph [ref=e50]: Leading manufacturer of O-Rings, Gaskets, Bushes, Bellows and custom moulded rubber components for Automotive, Engineering and Industrial applications.
+        - link "Download Catalogue" [ref=e51] [cursor=pointer]:
+          - /url: images/PSW-Catalogue.pdf
+      - generic [ref=e54]:
+        - heading "High Performance Sealing Solutions" [level=1] [ref=e55]
+        - paragraph [ref=e56]: Custom engineered rubber products manufactured with precision, durability and quality assurance.
+        - link "About us" [ref=e57] [cursor=pointer]:
+          - /url: about.php
+      - generic [ref=e60]:
+        - heading "Trusted By Industrial Manufacturers" [level=1] [ref=e61]
+        - paragraph [ref=e62]: Serving Automotive, Engineering and Industrial sectors across India with reliable rubber solutions.
+        - link "Contact Us" [ref=e63] [cursor=pointer]:
+          - /url: contact.php
+    - generic [ref=e64]:
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - img "Prakash Seal Works Manufacturing Facility" [ref=e71]
+          - generic [ref=e73]:
+            - heading "Precision Rubber Components Engineered to Your Specs" [level=2] [ref=e74]: Precision Rubber ComponentsEngineered to Your Specs
+            - paragraph [ref=e75]: We manufacture high-quality rubber moulding components strictly to customer drawings, samples, or specifications. From standard O-Rings to complex custom-engineered parts, we deliver reliability and precision for every application.
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - heading "Material Reference & Technical Data" [level=2] [ref=e79]
+            - paragraph [ref=e80]: The following table presents key technical parameters for rubber grades used in our manufacturing process. All values are indicative; actual properties depend on compound formulation and processing conditions.
+          - table [ref=e82]:
+            - rowgroup [ref=e83]:
+              - row [ref=e84]:
+                - columnheader "Code" [ref=e85]
+                - columnheader "Material Name" [ref=e86]
+                - columnheader "Temp. Range" [ref=e87]
+                - columnheader "Hardness" [ref=e88]
+                - columnheader "Tensile Str." [ref=e89]
+                - columnheader "Elongation" [ref=e90]
+                - columnheader "Colour" [ref=e91]
+                - columnheader "Primary Applications" [ref=e92]
+            - rowgroup [ref=e93]:
+              - row [ref=e94]:
+                - cell [ref=e95]:
+                  - strong [ref=e96]: NBR
+                - cell "Nitrile Butadiene Rubber" [ref=e97]
+                - cell "-40°C to +120°C" [ref=e98]
+                - cell "30–90 Shore A" [ref=e99]
+                - cell "≥ 15 MPa" [ref=e100]
+                - cell "300–500%" [ref=e101]
+                - cell "Black / Any" [ref=e102]
+                - cell "Oils, fuels, hydraulic fluids, automotive seals" [ref=e103]
+              - row [ref=e104]:
+                - cell [ref=e105]:
+                  - strong [ref=e106]: EPDM
+                - cell "Ethylene Propylene Diene" [ref=e107]
+                - cell "-50°C to +150°C" [ref=e108]
+                - cell "40–90 Shore A" [ref=e109]
+                - cell "≥ 10 MPa" [ref=e110]
+                - cell "200–500%" [ref=e111]
+                - cell "Black / Grey" [ref=e112]
+                - cell "Water, steam, ozone, outdoor, HVAC" [ref=e113]
+              - row [ref=e114]:
+                - cell [ref=e115]:
+                  - strong [ref=e116]: FKM
+                - cell "Fluorocarbon (Viton®)" [ref=e117]
+                - cell "-20°C to +200°C" [ref=e118]
+                - cell "60–90 Shore A" [ref=e119]
+                - cell "≥ 10 MPa" [ref=e120]
+                - cell "150–350%" [ref=e121]
+                - cell "Black / Brown" [ref=e122]
+                - cell "Aggressive chemicals, high-temperature sealing" [ref=e123]
+              - row [ref=e124]:
+                - cell [ref=e125]:
+                  - strong [ref=e126]: Silicone
+                - cell "Silicone (VMQ)" [ref=e127]
+                - cell "-60°C to +200°C" [ref=e128]
+                - cell "20–80 Shore A" [ref=e129]
+                - cell "5–10 MPa" [ref=e130]
+                - cell "100–800%" [ref=e131]
+                - cell "Any" [ref=e132]
+                - cell "Food grade, medical devices, electrical insulation" [ref=e133]
+              - row [ref=e134]:
+                - cell [ref=e135]:
+                  - strong [ref=e136]: CR
+                - cell "Chloroprene (Neoprene)" [ref=e137]
+                - cell "-40°C to +120°C" [ref=e138]
+                - cell "40–80 Shore A" [ref=e139]
+                - cell "≥ 14 MPa" [ref=e140]
+                - cell "300–600%" [ref=e141]
+                - cell "Black" [ref=e142]
+                - cell "Weather, ozone, moderate oil exposure" [ref=e143]
+              - row [ref=e144]:
+                - cell [ref=e145]:
+                  - strong [ref=e146]: NR
+                - cell "Natural Rubber" [ref=e147]
+                - cell "-55°C to +80°C" [ref=e148]
+                - cell "30–80 Shore A" [ref=e149]
+                - cell "≥ 20 MPa" [ref=e150]
+                - cell "400–700%" [ref=e151]
+                - cell "Amber / Black" [ref=e152]
+                - cell "High elasticity, vibration damping, general use" [ref=e153]
+              - row [ref=e154]:
+                - cell [ref=e155]:
+                  - strong [ref=e156]: PU
+                - cell "Polyurethane" [ref=e157]
+                - cell "-30°C to +80°C" [ref=e158]
+                - cell "60–98 Shore A" [ref=e159]
+                - cell "≥ 25 MPa" [ref=e160]
+                - cell "300–600%" [ref=e161]
+                - cell "Yellow / Black" [ref=e162]
+                - cell "High abrasion, hydraulic cylinders, wear parts" [ref=e163]
+              - row [ref=e164]:
+                - cell [ref=e165]:
+                  - strong [ref=e166]: PTFE
+                - cell "Polytetrafluoroethylene" [ref=e167]
+                - cell "-200°C to +260°C" [ref=e168]
+                - cell "55–65 Shore D" [ref=e169]
+                - cell "14–35 MPa" [ref=e170]
+                - cell "200–400%" [ref=e171]
+                - cell "White" [ref=e172]
+                - cell "Chemical resistance, low friction, high-temp seals" [ref=e173]
+          - generic [ref=e174]: "* All values are indicative; actual properties depend on compound formulation and processing conditions."
+      - generic [ref=e175]:
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - heading "Our Product Range" [level=2] [ref=e179]
+            - paragraph [ref=e180]: From standard O-Rings to custom-engineered components, we offer a comprehensive range of precision rubber moulding solutions for diverse industrial applications.
+          - generic [ref=e181]:
+            - generic [ref=e183]:
+              - generic [ref=e186]:
+                - link [ref=e188] [cursor=pointer]:
+                  - /url: products.html#bellows
+                  - img "Rubber Bellows for Protection" [ref=e189]
+                - generic [ref=e190]:
+                  - heading [level=2] [ref=e191]:
+                    - link "Rubber Bellows" [ref=e192] [cursor=pointer]:
+                      - /url: products.html#bellows
+                  - paragraph [ref=e193]: Round and custom rubber bellows for dust protection, moisture sealing, and linear motion protection in various grades.
+              - generic [ref=e196]:
+                - link [ref=e198] [cursor=pointer]:
+                  - /url: products.html#grommets
+                  - img "Rubber Grommets for Cable Protection" [ref=e199]
+                - generic [ref=e200]:
+                  - heading [level=2] [ref=e201]:
+                    - link "Grommets" [ref=e202] [cursor=pointer]:
+                      - /url: products.html#grommets
+                  - paragraph [ref=e203]: Rubber grommets for cable and wire protection, pumps, and control valves — custom manufactured to your specifications.
+              - generic [ref=e206]:
+                - link [ref=e208] [cursor=pointer]:
+                  - /url: products.html#custom
+                  - img "Custom Engineered Rubber Components" [ref=e209]
+                - generic [ref=e210]:
+                  - heading [level=2] [ref=e211]:
+                    - link "Custom Moulded Parts" [ref=e212] [cursor=pointer]:
+                      - /url: products.html#custom
+                  - paragraph [ref=e213]: Specialised components including rubber pads, linings, and custom-moulded shapes for automotive and heavy engineering applications.
+              - generic [ref=e216]:
+                - link [ref=e218] [cursor=pointer]:
+                  - /url: products.html#o-rings
+                  - img "O-Rings Rubber Seals" [ref=e219]
+                - generic [ref=e220]:
+                  - heading [level=2] [ref=e221]:
+                    - link "O-Rings" [ref=e222] [cursor=pointer]:
+                      - /url: products.html#o-rings
+                  - paragraph [ref=e223]: Available in NBR, Viton, EPDM, Silicone, and Neoprene — sizes from Ø1 to Ø500 mm for hydraulic, pneumatic, and chemical applications.
+              - generic [ref=e226]:
+                - link [ref=e228] [cursor=pointer]:
+                  - /url: products.html#gaskets
+                  - img "Custom Rubber Gaskets" [ref=e229]
+                - generic [ref=e230]:
+                  - heading [level=2] [ref=e231]:
+                    - link "Gaskets" [ref=e232] [cursor=pointer]:
+                      - /url: products.html#gaskets
+                  - paragraph [ref=e233]: Flat gaskets, ring gaskets, and die-cut custom gaskets for pipe flanges, industrial sealing, and OEM applications.
+              - generic [ref=e236]:
+                - link [ref=e238] [cursor=pointer]:
+                  - /url: products.html#bushes
+                  - img "Rubber Bushes for Vibration Isolation" [ref=e239]
+                - generic [ref=e240]:
+                  - heading [level=2] [ref=e241]:
+                    - link "Rubber Bushes" [ref=e242] [cursor=pointer]:
+                      - /url: products.html#bushes
+                  - paragraph [ref=e243]: Plain bushes, metal-bonded bushes, flange bushes, and conical bushes for vibration isolation and heavy machinery support.
+              - generic [ref=e246]:
+                - link [ref=e248] [cursor=pointer]:
+                  - /url: products.html#bellows
+                  - img "Rubber Bellows for Protection" [ref=e249]
+                - generic [ref=e250]:
+                  - heading [level=2] [ref=e251]:
+                    - link "Rubber Bellows" [ref=e252] [cursor=pointer]:
+                      - /url: products.html#bellows
+                  - paragraph [ref=e253]: Round and custom rubber bellows for dust protection, moisture sealing, and linear motion protection in various grades.
+              - generic [ref=e256]:
+                - link [ref=e258] [cursor=pointer]:
+                  - /url: products.html#grommets
+                  - img "Rubber Grommets for Cable Protection" [ref=e259]
+                - generic [ref=e260]:
+                  - heading [level=2] [ref=e261]:
+                    - link "Grommets" [ref=e262] [cursor=pointer]:
+                      - /url: products.html#grommets
+                  - paragraph [ref=e263]: Rubber grommets for cable and wire protection, pumps, and control valves — custom manufactured to your specifications.
+              - generic [ref=e266]:
+                - link [ref=e268] [cursor=pointer]:
+                  - /url: products.html#custom
+                  - img "Custom Engineered Rubber Components" [ref=e269]
+                - generic [ref=e270]:
+                  - heading [level=2] [ref=e271]:
+                    - link "Custom Moulded Parts" [ref=e272] [cursor=pointer]:
+                      - /url: products.html#custom
+                  - paragraph [ref=e273]: Specialised components including rubber pads, linings, and custom-moulded shapes for automotive and heavy engineering applications.
+              - generic [ref=e276]:
+                - link [ref=e278] [cursor=pointer]:
+                  - /url: products.html#o-rings
+                  - img "O-Rings Rubber Seals" [ref=e279]
+                - generic [ref=e280]:
+                  - heading [level=2] [ref=e281]:
+                    - link "O-Rings" [ref=e282] [cursor=pointer]:
+                      - /url: products.html#o-rings
+                  - paragraph [ref=e283]: Available in NBR, Viton, EPDM, Silicone, and Neoprene — sizes from Ø1 to Ø500 mm for hydraulic, pneumatic, and chemical applications.
+              - generic [ref=e286]:
+                - link [ref=e288] [cursor=pointer]:
+                  - /url: products.html#gaskets
+                  - img "Custom Rubber Gaskets" [ref=e289]
+                - generic [ref=e290]:
+                  - heading [level=2] [ref=e291]:
+                    - link "Gaskets" [ref=e292] [cursor=pointer]:
+                      - /url: products.html#gaskets
+                  - paragraph [ref=e293]: Flat gaskets, ring gaskets, and die-cut custom gaskets for pipe flanges, industrial sealing, and OEM applications.
+              - generic [ref=e296]:
+                - link [ref=e298] [cursor=pointer]:
+                  - /url: products.html#bushes
+                  - img "Rubber Bushes for Vibration Isolation" [ref=e299]
+                - generic [ref=e300]:
+                  - heading [level=2] [ref=e301]:
+                    - link "Rubber Bushes" [ref=e302] [cursor=pointer]:
+                      - /url: products.html#bushes
+                  - paragraph [ref=e303]: Plain bushes, metal-bonded bushes, flange bushes, and conical bushes for vibration isolation and heavy machinery support.
+            - generic [ref=e304]:
+              - button "" [ref=e305] [cursor=pointer]
+              - button "" [ref=e307] [cursor=pointer]
+        - generic [ref=e311]:
+          - generic [ref=e313]:
+            - heading "Pan-India Supply — Trusted by OEMs Across Industries" [level=2] [ref=e314]
+            - generic [ref=e315]:
+              - heading "+91 7011597856" [level=3] [ref=e317]
+              - link "Get a Quote" [ref=e319] [cursor=pointer]:
+                - /url: contact.php
+          - img "Prakash Seal Works Rubber Components" [ref=e321]
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - heading "Our Core Services" [level=2] [ref=e325]
+            - paragraph [ref=e326]: We deliver precision rubber moulding solutions across a wide range of industries — from automotive and heavy engineering to pharmaceuticals and oil & gas.
+          - generic [ref=e327]:
+            - generic [ref=e329]:
+              - link "" [ref=e331] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - generic [ref=e333]:
+                - heading "O-Rings & Seals" [level=2] [ref=e334]
+                - paragraph [ref=e335]: Precision O-Rings in NBR, Viton, EPDM, Silicone, and Neoprene — available in sizes from Ø1 to Ø500 mm for hydraulic, pneumatic, and chemical applications.
+            - generic [ref=e337]:
+              - link "" [ref=e339] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - generic [ref=e341]:
+                - heading "Custom Gaskets" [level=2] [ref=e342]
+                - paragraph [ref=e343]: Flat gaskets, ring gaskets, and die-cut custom gaskets for pipe flanges, industrial sealing, and OEM applications — manufactured to your exact drawings.
+            - generic [ref=e345]:
+              - link "" [ref=e347] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - generic [ref=e349]:
+                - heading "Rubber Bushes" [level=2] [ref=e350]
+                - paragraph [ref=e351]: Plain bushes, metal-bonded bushes, flange bushes, and conical bushes for vibration isolation, anti-vibration mounts, and heavy machinery support.
+            - generic [ref=e353]:
+              - link "" [ref=e355] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - generic [ref=e357]:
+                - heading "Rubber Bellows" [level=2] [ref=e358]
+                - paragraph [ref=e359]: Round and custom rubber bellows for dust protection, moisture sealing, and linear motion protection — available in NBR, Silicone, Neoprene, and Viton.
+            - generic [ref=e361]:
+              - link "" [ref=e363] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - generic [ref=e365]:
+                - heading "Grommets & Protectors" [level=2] [ref=e366]
+                - paragraph [ref=e367]: Rubber grommets for cable and wire protection, pumps, and control valves — custom manufactured to your specifications with precision.
+            - generic [ref=e369]:
+              - link "" [ref=e371] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - generic [ref=e373]:
+                - heading "Custom Compounds" [level=2] [ref=e374]
+                - paragraph [ref=e375]: We develop custom rubber compounds for special hardness grades, extended temperature ratings, colour coding, and proprietary formulations.
+        - generic [ref=e378]:
+          - generic [ref=e380]:
+            - generic [ref=e381]:
+              - heading "We deliver the quality and reliability our clients expect" [level=2] [ref=e382]
+              - paragraph [ref=e383]: Our core competencies make us the preferred rubber component supplier for leading OEMs and engineering companies across India.
+            - heading "Custom Engineering & Design 98%" [level=6] [ref=e385]:
+              - text: Custom Engineering & Design
+              - generic [ref=e386]: 98%
+            - heading "Quality Control & Inspection 98%" [level=6] [ref=e388]:
+              - text: Quality Control & Inspection
+              - generic [ref=e389]: 98%
+            - heading "On-Time Delivery Performance 98%" [level=6] [ref=e391]:
+              - text: On-Time Delivery Performance
+              - generic [ref=e392]: 98%
+            - heading "Client Satisfaction & Repeat Orders 95%" [level=6] [ref=e394]:
+              - text: Client Satisfaction & Repeat Orders
+              - generic [ref=e395]: 95%
+          - img "Prakash Seal Works Manufacturing Excellence" [ref=e397]
+        - generic [ref=e399]:
+          - generic [ref=e400]:
+            - heading "What Our Clients Say" [level=2] [ref=e401]
+            - paragraph [ref=e402]: We take pride in building long-term partnerships with our clients. Here's what some of them have to say about their experience with Prakash Seal Works.
+          - generic [ref=e404]:
+            - generic [ref=e406]:
+              - generic [ref=e409]:
+                - paragraph [ref=e411]: We have been sourcing rubber bushes and bellows from Prakash Seal Works for over three years. Quality is always consistent and delivery is on time.
+                - generic [ref=e412]:
+                  - img "Client Testimonial" [ref=e414]
+                  - strong [ref=e415]: Vikram Singh
+              - generic [ref=e418]:
+                - paragraph [ref=e420]: We value their material expertise — from NBR to Viton and custom compounds, they always recommend the right material for the application.
+                - generic [ref=e421]:
+                  - img "Client Testimonial" [ref=e423]
+                  - strong [ref=e424]: Deepak Mehta
+              - generic [ref=e427]:
+                - paragraph [ref=e429]: From small batch orders to bulk production, Prakash Seal Works handles everything with professionalism and precision. Highly reliable.
+                - generic [ref=e430]:
+                  - img "Client Testimonial" [ref=e432]
+                  - strong [ref=e433]: Sanjay Joshi
+              - generic [ref=e436]:
+                - paragraph [ref=e438]: Prakash Seal Works has been our trusted supplier for automotive rubber components. Their quality and delivery consistency are exceptional.
+                - generic [ref=e439]:
+                  - img "Client Testimonial" [ref=e441]
+                  - strong [ref=e442]: Rajesh Kumar
+              - generic [ref=e445]:
+                - paragraph [ref=e447]: As a distributor, we value their competitive pricing and rapid turnaround times. They are a reliable partner for our pan-India supply chain.
+                - generic [ref=e448]:
+                  - img "Client Testimonial" [ref=e450]
+                  - strong [ref=e451]: Amit Patel
+              - generic [ref=e454]:
+                - paragraph [ref=e456]: We have been sourcing rubber bushes and bellows from Prakash Seal Works for over three years. Quality is always consistent and delivery is on time.
+                - generic [ref=e457]:
+                  - img "Client Testimonial" [ref=e459]
+                  - strong [ref=e460]: Vikram Singh
+              - generic [ref=e463]:
+                - paragraph [ref=e465]: We value their material expertise — from NBR to Viton and custom compounds, they always recommend the right material for the application.
+                - generic [ref=e466]:
+                  - img "Client Testimonial" [ref=e468]
+                  - strong [ref=e469]: Deepak Mehta
+              - generic [ref=e472]:
+                - paragraph [ref=e474]: From small batch orders to bulk production, Prakash Seal Works handles everything with professionalism and precision. Highly reliable.
+                - generic [ref=e475]:
+                  - img "Client Testimonial" [ref=e477]
+                  - strong [ref=e478]: Sanjay Joshi
+              - generic [ref=e481]:
+                - paragraph [ref=e483]: Prakash Seal Works has been our trusted supplier for automotive rubber components. Their quality and delivery consistency are exceptional.
+                - generic [ref=e484]:
+                  - img "Client Testimonial" [ref=e486]
+                  - strong [ref=e487]: Rajesh Kumar
+              - generic [ref=e490]:
+                - paragraph [ref=e492]: As a distributor, we value their competitive pricing and rapid turnaround times. They are a reliable partner for our pan-India supply chain.
+                - generic [ref=e493]:
+                  - img "Client Testimonial" [ref=e495]
+                  - strong [ref=e496]: Amit Patel
+              - generic [ref=e499]:
+                - paragraph [ref=e501]: We have been sourcing rubber bushes and bellows from Prakash Seal Works for over three years. Quality is always consistent and delivery is on time.
+                - generic [ref=e502]:
+                  - img "Client Testimonial" [ref=e504]
+                  - strong [ref=e505]: Vikram Singh
+            - generic [ref=e506]:
+              - button "" [ref=e507] [cursor=pointer]
+              - button "" [ref=e509] [cursor=pointer]
+            - generic [ref=e511]:
+              - button
+              - button
+        - generic [ref=e515]:
+          - generic [ref=e517]:
+            - link [ref=e522] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e527] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e532] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e537] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e542] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e547] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e552] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e557] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e562] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e567] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e572] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e577] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e582] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e587] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e592] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - link [ref=e597] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - generic [ref=e598]:
+            - button "" [ref=e599] [cursor=pointer]
+            - button "" [ref=e601] [cursor=pointer]
+    - contentinfo [ref=e603]:
+      - generic [ref=e606]:
+        - generic [ref=e607]:
+          - img "Prakash Seal Works Address" [ref=e608]
+          - heading "Our Address" [level=4] [ref=e609]
+          - paragraph [ref=e610]: Vill.- Tilpat, Near Bhati Hardware Shop, Faridabad, Haryana - 121003, India
+        - generic [ref=e611]:
+          - img "Prakash Seal Works Phone Number" [ref=e612]
+          - heading "Phone / WhatsApp" [level=4] [ref=e613]
+          - paragraph [ref=e614]: +91 7011597856
+        - generic [ref=e615]:
+          - img "Prakash Seal Works Email" [ref=e616]
+          - heading "Email Contact" [level=4] [ref=e617]
+          - paragraph [ref=e618]: info@prakashsealworks.com
+      - generic [ref=e621]:
+        - generic [ref=e623]:
+          - heading "About Prakash Seal Works" [level=4] [ref=e624]
+          - paragraph [ref=e625]: PRAKASH SEAL WORKS manufactures precision rubber moulding components, delivering quality O-rings, gaskets, bushes, bellows, and custom solutions for industrial and automotive applications nationwide.
+        - generic [ref=e627]:
+          - heading "Usefull Link" [level=4] [ref=e628]
+          - list [ref=e629]:
+            - listitem [ref=e630]:
+              - link "Home" [ref=e631] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e632]:
+              - link "About Us" [ref=e633] [cursor=pointer]:
+                - /url: about.php
+            - listitem [ref=e634]:
+              - link "Contact Us" [ref=e635] [cursor=pointer]:
+                - /url: contact.php
+            - listitem [ref=e636]:
+              - link "Disclaimer" [ref=e637] [cursor=pointer]:
+                - /url: disclaimer.php
+            - listitem [ref=e638]:
+              - link "Cookie policy" [ref=e639] [cursor=pointer]:
+                - /url: cookie.php
+            - listitem [ref=e640]:
+              - link "Privacy Policy" [ref=e641] [cursor=pointer]:
+                - /url: privacy.php
+            - listitem [ref=e642]:
+              - link "Terms & conditions" [ref=e643] [cursor=pointer]:
+                - /url: terms.php
+        - generic [ref=e645]:
+          - heading "Products" [level=4] [ref=e646]
+          - list [ref=e647]:
+            - listitem [ref=e648]:
+              - link "O-Rings" [ref=e649] [cursor=pointer]:
+                - /url: o-rings.php
+            - listitem [ref=e650]:
+              - link "Gaskets" [ref=e651] [cursor=pointer]:
+                - /url: gaskets.php
+            - listitem [ref=e652]:
+              - link "Bushes" [ref=e653] [cursor=pointer]:
+                - /url: bushes.php
+            - listitem [ref=e654]:
+              - link "Bellows" [ref=e655] [cursor=pointer]:
+                - /url: bellows.php
+            - listitem [ref=e656]:
+              - link "Moulded Parts" [ref=e657] [cursor=pointer]:
+                - /url: moulded-parts.php
+            - listitem [ref=e658]:
+              - link "Custom Parts" [ref=e659] [cursor=pointer]:
+                - /url: custom-parts.php
+        - generic [ref=e661]:
+          - heading "Usefull Link" [level=4] [ref=e662]
+          - paragraph [ref=e663]: If you have any questions. Subscribe to our newsletter to get our latest products.
+          - generic [ref=e666]:
+            - textbox "Your Email Address" [ref=e667]
+            - button "" [ref=e669] [cursor=pointer]
+      - generic [ref=e672]:
+        - link [ref=e674] [cursor=pointer]:
+          - /url: /
+        - list [ref=e676]:
+          - listitem [ref=e677]:
+            - link "" [ref=e678] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e679]:
+            - link "" [ref=e680] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e681]:
+            - link "" [ref=e682] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e683]:
+            - link "" [ref=e684] [cursor=pointer]:
+              - /url: javascript:void(0);
+    - button "" [ref=e685] [cursor=pointer]

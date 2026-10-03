@@ -1,0 +1,39 @@
+---
+import { services } from '../data/business';
+import Icon from './Icon.astro';
+import Picture from './Picture.astro';
+interface Props {
+  all?: boolean;
+}
+const { all = false } = Astro.props;
+const list = services.slice(0, all ? services.length : 6);
+---
+
+<div class:list={['ic-services', { 'ic-services-all': all }]}>
+  {list.map((service, index) => (
+    <a
+      class="ic-service-card ic-card"
+      href={`/services/${service.slug}/`}
+      data-reveal
+      style={`--reveal-delay:${index * 70}ms`}
+    >
+      <div class="ic-service-photo">
+        <Picture
+          name={service.image}
+          alt={`${service.subtitle} — representative photograph`}
+          sizes="(max-width: 600px) 50vw, (max-width: 1100px) 33vw, 16vw"
+        />
+      </div>
+      <span class="ic-service-icon">
+        <Icon name={service.icon} size={22} />
+      </span>
+      <div class="ic-service-body">
+        <h3>{service.name}</h3>
+        <p>{service.description}</p>
+        <span class="ic-more">
+          Explore <Icon name="arrow" size={15} />
+        </span>
+      </div>
+    </a>
+  ))}
+</div>

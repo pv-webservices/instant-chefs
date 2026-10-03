@@ -1,0 +1,209 @@
+---
+import Icon from './Icon.astro';
+import { services, cuisines, business, plans } from '../data/business';
+---
+
+<div class="contact-card">
+  <h2>Tell us about your kitchen.</h2>
+  <p>
+    A few details help us find your fit. Prepare your enquiry, review it, then
+    send it through WhatsApp or email.
+  </p>
+  <form id="enquiry-form" class="enquiry-form">
+    <div class="form-grid">
+      <div class="field">
+        <label for="full-name">
+          Full name <span>(required)</span>
+        </label>
+        <input
+          id="full-name"
+          name="Full name"
+          type="text"
+          autocomplete="name"
+          required
+          minlength="2"
+          maxlength="80"
+          placeholder="Your name"
+        />
+      </div>
+      <div class="field">
+        <label for="mobile-number">
+          Mobile number <span>(required)</span>
+        </label>
+        <input
+          id="mobile-number"
+          name="Mobile number"
+          type="tel"
+          autocomplete="tel"
+          required
+          inputmode="tel"
+          maxlength="20"
+          placeholder="Your mobile number"
+        />
+      </div>
+      <div class="field">
+        <label for="email-address">
+          Email <span>(optional)</span>
+        </label>
+        <input
+          id="email-address"
+          name="Email"
+          type="email"
+          autocomplete="email"
+          maxlength="120"
+          placeholder="you@example.com"
+        />
+      </div>
+      <div class="field">
+        <label for="business-type">
+          Business / household type <span>(required)</span>
+        </label>
+        <select id="business-type" name="Business / household type" required>
+          <option value="">Select your kitchen</option>
+          {services.map((service) => (
+            <option value={service.name}>{service.name}</option>
+          ))}
+          <option>Other requirement</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="staff-requirement">
+          Staff requirement <span>(required)</span>
+        </label>
+        <select id="staff-requirement" name="Staff requirement" required>
+          <option value="">Who are you looking for?</option>
+          <option>Chef</option>
+          <option>Bakery staff</option>
+          <option>Full-time live-in home cook</option>
+          <option>Maid</option>
+          <option>Gardener</option>
+          <option>Other — discuss with team</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cuisine">Cuisine requirement</label>
+        <select id="cuisine" name="Cuisine requirement">
+          <option value="">Select a cuisine, if relevant</option>
+          {cuisines.map((cuisine) => (
+            <option>{cuisine.name}</option>
+          ))}
+          <option>Multiple cuisines</option>
+          <option>Other — discuss with team</option>
+          <option>Not applicable</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="experience">Experience requirement</label>
+        <input
+          id="experience"
+          name="Experience requirement"
+          maxlength="100"
+          placeholder="e.g. 3 years in a restaurant"
+        />
+      </div>
+      <div class="field">
+        <label for="salary">Preferred salary range</label>
+        <input
+          id="salary"
+          name="Preferred salary range"
+          maxlength="80"
+          placeholder="e.g. ₹20,000–₹25,000 per month"
+        />
+      </div>
+      <div class="field">
+        <label for="location">
+          Kitchen / home location <span>(required)</span>
+        </label>
+        <input
+          id="location"
+          name="Location"
+          autocomplete="address-level2"
+          required
+          minlength="2"
+          maxlength="120"
+          placeholder="City and area"
+        />
+      </div>
+      <div class="field">
+        <label for="selected-plan">Hiring plan</label>
+        <select id="selected-plan" name="Hiring plan">
+          <option value="">Help me choose a plan</option>
+          {plans.map((plan) => (
+            <option value={plan.id}>
+              {plan.name} · {plan.months} months · ₹
+              {plan.fee.toLocaleString('en-IN')}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div class="field field-full">
+        <label for="message">Anything else we should know?</label>
+        <textarea
+          id="message"
+          name="Message"
+          rows="4"
+          maxlength="1500"
+          placeholder="Your menu, schedule or anything that matters to your hire."
+        />
+      </div>
+    </div>
+    <p class="form-help">
+      Please share only information needed for your staffing enquiry. Preparing
+      a message keeps it in this page; opening WhatsApp or email lets you review
+      and send it there. See our <a href="/privacy-policy/">privacy policy</a>.
+    </p>
+    <button type="submit" class="button">
+      Prepare my enquiry <Icon name="arrow" size={18} />
+    </button>
+    <div
+      id="enquiry-preview"
+      class="enquiry-preview"
+      hidden
+      tabindex="-1"
+      aria-labelledby="preview-heading"
+    >
+      <h3 id="preview-heading">Your enquiry is ready to review.</h3>
+      <p id="enquiry-status" role="status">
+        Nothing has been sent yet. Choose WhatsApp or email below and send your
+        message there.
+      </p>
+      <pre id="enquiry-message"></pre>
+      <div class="button-row">
+        <a
+          id="send-whatsapp"
+          class="button"
+          href={business.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="chat" size={19} />
+          Open WhatsApp
+        </a>
+        <a
+          id="send-email"
+          class="button button-outline"
+          href={`mailto:${business.email}`}
+        >
+          <Icon name="mail" size={18} />
+          Open email
+        </a>
+      </div>
+    </div>
+  </form>
+  <noscript>
+    <style>
+      .enquiry-form {
+        display: none;
+      }
+    </style>
+    <p class="form-noscript">
+      Call <a href={business.tel}>{business.phone}</a> or{' '}
+      <a href={business.whatsapp}>open WhatsApp</a> to share your requirement.
+      The enquiry preparation form requires JavaScript.
+    </p>
+  </noscript>
+</div>
+<script>
+  import { initEnquiryForm } from '../scripts/enquiry';
+  initEnquiryForm();
+</script>

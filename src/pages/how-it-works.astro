@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import Icon from '../components/Icon.astro';
+const steps = [
+  [
+    'A conversation about your kitchen',
+    'Share your staff type, cuisine, required experience, salary range and location. For home cooks, discuss full-time live-in arrangements and household food preferences.',
+  ],
+  [
+    'A relevant shortlist',
+    'We look for suitable chefs based on your brief. Every chef goes through a background check, skill test and interview. Cuisine, experience and salary expectations help guide the match.',
+  ],
+  [
+    'Direct candidate interviews',
+    'Meet approximately 2–3 shortlisted candidates directly. Talk about the work, your menu and your expectations so you can decide whom you would like to trial.',
+  ],
+  [
+    'Choose a plan and arrange the trial',
+    'Discuss the applicable chef or home cook plan with the team. The one-time service fee is collected in advance, before the trial begins. Confirm all payment terms before proceeding.',
+  ],
+  [
+    'A one-day practical trial',
+    'Your selected chef joins for a one-day trial. Use the time to assess the food, relevant kitchen skills and everyday fit. If you are not satisfied, request another suitable candidate.',
+  ],
+  [
+    'Make the final choice',
+    'You can try up to five different chefs before your final staff choice. Hire when you are satisfied. Service fees are non-refundable after the candidate is hired.',
+  ],
+  [
+    'Hiring and ongoing support',
+    'We coordinate the hire and provide support throughout your plan duration. Our team offers 24/7 real-time assistance when you need to discuss your chef requirement.',
+  ],
+  [
+    'Replacement support',
+    'If a chef is not working out, contact the team. Free chef replacements are included within your selected six-month or twelve-month plan duration.',
+  ],
+];
+---
+
+<Base
+  title="How Chef Hiring Works — Interviews, Trials & Support"
+  description="Learn the Instant Chefs hiring process: share requirements, interview shortlisted chefs, arrange a one-day trial and get ongoing plan and replacement support."
+>
+  <PageHero
+    label="How it works"
+    title="From the first hello to your next great hire."
+    text="A simple, personal hiring process. You know your kitchen best. We help you meet the people who could be right for it."
+    cta="Start your chef search"
+    image="trial"
+    imageAlt="Restaurant owner tasting a dish during a chef trial"
+  />
+  <section class="section process-section">
+    <div class="container">
+      <h2 class="sr-only">The four-step chef hiring process</h2>
+      <ProcessTimeline />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        label="HERE’S WHAT TO EXPECT"
+        title="Clear steps. Room to find your fit."
+        text="A closer look at the chef hiring journey, so you know what happens and when."
+      />
+      <ol class="process-details">
+        {steps.map(([title, text], index) => (
+          <li class="process-detail" data-reveal>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <section class="section warm-section">
+    <div class="container split-content">
+      <SectionHeading
+        label="GET MORE FROM YOUR CONSULTATION"
+        title="A good brief makes a better match."
+        text="You don’t need to have every detail settled. These are useful starting points for our first conversation."
+      />
+      <div>
+        <ul class="check-list">
+          <li>
+            <Icon name="check" size={20} />
+            Staff type and business or household requirement
+          </li>
+          <li>
+            <Icon name="check" size={20} />
+            Primary cuisines and the dishes on your menu
+          </li>
+          <li>
+            <Icon name="check" size={20} />
+            Experience level and preferred salary range
+          </li>
+          <li>
+            <Icon name="check" size={20} />
+            Location, work schedule and live-in arrangements
+          </li>
+        </ul>
+        <a class="text-link" href="/contact/" style="margin-top:25px">
+          Share your requirement <Icon name="arrow" size={18} />
+        </a>
+        <div class="notice">
+          <p>
+            <strong>For maids and gardeners:</strong> please confirm the
+            applicable assessment process, fee and replacement terms directly.
+            The chef trial process and published plans are not automatically
+            extended to domestic staff roles.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

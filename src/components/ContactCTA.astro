@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+import Picture from './Picture.astro';
+import { business } from '../data/business';
+---
+
+<section class="ic-cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="ic-cta-card" data-reveal="zoom">
+      <div class="ic-cta-copy">
+        <span class="ic-kicker ic-kicker-dark">Ready to build your team?</span>
+        <h2 id="cta-title">
+          Contact Instant Chefs for your <em>staffing requirements</em>
+        </h2>
+        <p>
+          Whether you need a chef, a cook or domestic staff — we are here to
+          help.
+        </p>
+        <div class="ic-btn-row">
+          <a class="btn btn-dark" href="/contact/">
+            <span>Hire a chef today</span>
+            <Icon name="arrow" size={19} />
+          </a>
+          <a class="ic-cta-call" href={business.tel}>
+            <Icon name="phone" size={18} />
+            {business.phone}
+          </a>
+        </div>
+      </div>
+      <div class="ic-cta-visual" aria-hidden="true">
+        <span class="ic-cta-ring"></span>
+        <Picture name="chef-cta" alt="" sizes="(max-width: 700px) 60vw, 26vw" />
+        <span class="handwritten ic-cta-hand">
+          Good people.
+          <br />
+          Great food ♥
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

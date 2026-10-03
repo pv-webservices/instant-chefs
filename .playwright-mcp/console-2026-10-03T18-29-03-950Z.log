@@ -1,0 +1,10 @@
+[     333ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://astv.flightscapez.com/css/style.css:0
+[     334ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://astv.flightscapez.com/css/templete.css:0
+[     334ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://astv.flightscapez.com/js/custom.js:0
+[    2494ms] Unexpected token '<'
+[    3248ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/images/backgro2.png:0
+[    3286ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/images/Rubber-Bellows.jpg:0
+[    3294ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/images/Grommets.jpg:0
+[    3300ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/images/Custom-Components.jpg:0
+[    3318ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/images/Rubber-Bushes.jpg:0
+[    3327ms] [ERROR] Failed to load resource: the server responded with a status of 501 (Unsupported method ('POST')) @ http://localhost:8080/cdn-cgi/rum?:0

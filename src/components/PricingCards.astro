@@ -1,0 +1,76 @@
+---
+import { plans } from '../data/business';
+import Icon from './Icon.astro';
+---
+
+<div class="ic-pricing">
+  <div class="ic-pricing-grid">
+    {plans.map((plan, index) => (
+      <article
+        class:list={['ic-plan ic-card', { featured: plan.featured }]}
+        data-reveal
+        style={`--reveal-delay:${index * 80}ms`}
+      >
+        {plan.featured && <span class="ic-plan-badge">Most popular</span>}
+        <div class="ic-plan-head">
+          <span class="ic-plan-icon">
+            <Icon
+              name={plan.id.startsWith('chef') ? 'chef' : 'home'}
+              size={22}
+            />
+          </span>
+          <h3>
+            {plan.months === 6 ? 'Six' : 'Twelve'} months
+            <br />
+            {plan.name} plan
+          </h3>
+        </div>
+        <div class="ic-plan-price">
+          ₹{plan.fee.toLocaleString('en-IN')}
+          <small>one-time service fee</small>
+        </div>
+        <ul>
+          <li>
+            <Icon name="check" size={16} />
+            {plan.id.startsWith('chef') ? 'Chef' : 'Home cook'} placement for{' '}
+            {plan.months} months
+          </li>
+          <li>
+            <Icon name="check" size={16} />
+            Interview 2–3 candidates
+          </li>
+          <li>
+            <Icon name="check" size={16} />
+            Up to 5 chef trials
+          </li>
+          <li>
+            <Icon name="check" size={16} />
+            Free chef replacements*
+          </li>
+        </ul>
+        <a
+          class:list={['btn btn-block', { 'btn-outline': !plan.featured }]}
+          href={`/contact/?plan=${plan.id}`}
+        >
+          <span>Get started</span>
+          <Icon name="arrow" size={17} />
+        </a>
+      </article>
+    ))}
+  </div>
+  <aside class="ic-pricing-notes" data-reveal>
+    <p>
+      <Icon name="check" size={18} />
+      Payment is collected in advance, before the trial begins.
+    </p>
+    <p>
+      <Icon name="check" size={18} />
+      Fees are non-refundable after the candidate is hired.
+    </p>
+    <p>
+      <Icon name="check" size={18} />
+      *Free chef replacements within your selected plan duration. Candidate
+      salary is discussed separately.
+    </p>
+  </aside>
+</div>

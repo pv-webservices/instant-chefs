@@ -1,0 +1,160 @@
+---
+import Icon from './Icon.astro';
+import { business, navigation } from '../data/business';
+const pathname = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  pathname === href || (href !== '/' && pathname.startsWith(href));
+---
+
+<aside class="ic-topbar" aria-label="Instant Chefs overview">
+  <div class="container">
+    <p>
+      <Icon name="chef" size={15} />
+      <span>Trusted chef &amp; domestic staff hiring service</span>
+      <span class="ic-topbar-list">
+        Restaurants · Cafés · Cloud kitchens · Bakeries · Catering · Homes
+      </span>
+    </p>
+    <div class="ic-topbar-contact">
+      <a href={business.tel} class="ic-topbar-call">
+        <Icon name="phone" size={14} />
+        {business.phone}
+      </a>
+      <a href={`mailto:${business.email}`} class="ic-topbar-call">
+        <Icon name="mail" size={14} />
+        {business.email}
+      </a>
+    </div>
+  </div>
+</aside>
+<header class="ic-header" id="site-header">
+  <div class="container ic-header-inner">
+    <a class="ic-brand" href="/" aria-label="Instant Chefs home">
+      <img
+        src="/images/logo-mark-128.webp"
+        srcset="/images/logo-mark-128.webp 1x, /images/logo-mark-256.webp 2x"
+        width="56"
+        height="56"
+        alt="Instant Chefs logo"
+      />
+      <span>
+        INSTANT <strong>CHEFS</strong>
+        <small>Hire smart. Hire Instant Chefs.</small>
+      </span>
+    </a>
+    <nav class="ic-nav" aria-label="Main navigation">
+      {navigation.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isCurrent(link.href) ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <a class="btn btn-sm ic-header-cta" href="/contact/">
+      <span>Hire a chef</span>
+      <Icon name="arrow" size={17} />
+    </a>
+    <button
+      type="button"
+      class="ic-menu-toggle"
+      id="menu-toggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <nav
+    class="ic-mobile-nav"
+    id="mobile-navigation"
+    aria-label="Mobile navigation"
+    hidden
+  >
+    <div class="container">
+      {navigation.map((link, index) => (
+        <a
+          href={link.href}
+          aria-current={isCurrent(link.href) ? 'page' : undefined}
+          style={`--i:${index}`}
+        >
+          <span class="ic-mobile-num">0{index + 1}</span>
+          {link.label}
+          <Icon name="northeast" size={20} />
+        </a>
+      ))}
+      <a href="/contact/" class="btn" style={`--i:${navigation.length}`}>
+        <span>Hire a chef today</span>
+        <Icon name="arrow" />
+      </a>
+      <div class="ic-mobile-contact">
+        <a href={business.tel}>
+          <Icon name="phone" size={18} />
+          {business.phone}
+        </a>
+        <a href={`mailto:${business.email}`}>
+          <Icon name="mail" size={18} />
+          {business.email}
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#mobile-navigation');
+  function setMenu(open: boolean) {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute(
+      'aria-label',
+      open ? 'Close navigation' : 'Open navigation',
+    );
+    const headerBottom = document
+      .querySelector('#site-header')
+      ?.getBoundingClientRect().bottom;
+    if (open && headerBottom) menu.style.top = `${Math.round(headerBottom)}px`;
+    menu.hidden = !open;
+    document.body.classList.toggle('menu-open', open);
+  }
+  toggle?.addEventListener('click', () =>
+    setMenu(toggle.getAttribute('aria-expanded') !== 'true'),
+  );
+  menu?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (!toggle || !menu || menu.hidden) return;
+    if (event.key === 'Escape') {
+      setMenu(false);
+      toggle.focus();
+    }
+    if (event.key === 'Tab') {
+      const links = Array.from(menu.querySelectorAll<HTMLAnchorElement>('a'));
+      const first = toggle;
+      const last = links.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  const desktop = window.matchMedia('(min-width: 1100px)');
+  desktop.addEventListener('change', () => {
+    if (desktop.matches) setMenu(false);
+  });
+  const sentinel = document.querySelector('#header-sentinel');
+  if (sentinel)
+    new IntersectionObserver(([entry]) =>
+      document
+        .querySelector('#site-header')
+        ?.classList.toggle('scrolled', !entry.isIntersecting),
+    ).observe(sentinel);
+</script>

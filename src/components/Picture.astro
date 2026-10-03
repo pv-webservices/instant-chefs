@@ -1,0 +1,47 @@
+---
+interface Props {
+  name: string;
+  alt: string;
+  class?: string;
+  eager?: boolean;
+  sizes?: string;
+}
+const {
+  name,
+  alt,
+  class: className = '',
+  eager = false,
+  sizes = '(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw',
+} = Astro.props;
+
+// Widths available in /public/images for each photograph.
+const GENERATED = [480, 1000];
+const widthsByName: Record<string, number[]> = {
+  chef: [600, 800, 1000],
+  'chef-portrait': GENERATED,
+  'chef-cta': GENERATED,
+  'hero-kitchen': GENERATED,
+  domestic: GENERATED,
+  'home-cook': GENERATED,
+  team: GENERATED,
+  trial: GENERATED,
+  'more-cuisines': GENERATED,
+  spices: GENERATED,
+};
+const widths = widthsByName[name] ?? [480, 800];
+const largest = widths[widths.length - 1];
+const srcset = widths.map((w) => `/images/${name}-${w}.webp ${w}w`).join(', ');
+---
+
+<img
+  class={className || undefined}
+  src={`/images/${name}-${largest}.webp`}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width={largest}
+  height={largest}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+/>

@@ -1,0 +1,522 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Picture from '../components/Picture.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import PricingCards from '../components/PricingCards.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import {
+  services,
+  whyChoose,
+  cuisines,
+  impact,
+  promises,
+  gallery,
+  faqs,
+} from '../data/business';
+import '../styles/home.css';
+
+const slug = (name: string) => name.toLowerCase().replaceAll(' ', '-');
+const cuisineSlides = [
+  ...cuisines.map((c) => ({
+    name: c.name,
+    image: c.image,
+    href: `/cuisines/#${slug(c.name)}`,
+  })),
+  { name: '& More', image: 'more-cuisines', href: '/cuisines/' },
+];
+---
+
+<Base
+  title="Hire Smart. Hire Instant Chefs."
+  description="Trained, verified chefs and domestic staff for restaurants, cafés, cloud kitchens, bakeries, catering businesses and homes. Interviews, 1-day trials and replacement support from Faridabad."
+  faq={faqs.slice(0, 4)}
+>
+  <!-- HERO -->
+  <section class="h-hero" aria-labelledby="hero-title">
+    <div class="h-hero-bg" aria-hidden="true">
+      <Picture
+        name="hero-kitchen"
+        alt=""
+        eager
+        sizes="(max-width: 800px) 100vw, 60vw"
+      />
+    </div>
+    <span class="h-hero-orb h-hero-orb-a" aria-hidden="true"></span>
+    <span class="h-hero-orb h-hero-orb-b" aria-hidden="true"></span>
+    <div class="container h-hero-grid">
+      <div class="h-hero-copy">
+        <span class="h-pill">
+          <span class="h-pill-dot"></span>
+          Chef &amp; domestic staff hiring · Faridabad
+        </span>
+        <h1 id="hero-title">
+          <span class="h-line">
+            <span>Hire Smart.</span>
+          </span>
+          <span class="h-line h-line-accent">
+            <span>Hire Instant Chefs.</span>
+          </span>
+        </h1>
+        <p class="h-hero-lead">
+          We provide trained and verified chefs and domestic staff for
+          restaurants, cafés, cloud kitchens, bakeries, catering businesses and
+          homes.
+        </p>
+        <div class="ic-btn-row h-hero-actions">
+          <a class="btn btn-lg" href="/contact/">
+            <span>Hire a chef</span>
+            <Icon name="arrow" size={19} />
+          </a>
+          <a class="btn btn-outline btn-lg" href="/contact/?consultation=free">
+            <span>Get a free consultation</span>
+          </a>
+        </div>
+        <ul class="h-trust">
+          <li>
+            <span>
+              <Icon name="check" size={16} />
+            </span>
+            <div>
+              <strong>Verified staff</strong>
+              <small>Trained &amp; reliable</small>
+            </div>
+          </li>
+          <li>
+            <span>
+              <Icon name="refresh" size={16} />
+            </span>
+            <div>
+              <strong>Quick replacements</strong>
+              <small>No hassle, no drama</small>
+            </div>
+          </li>
+          <li>
+            <span>
+              <Icon name="headphones" size={16} />
+            </span>
+            <div>
+              <strong>24/7 support</strong>
+              <small>We’re always here</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="h-hero-visual">
+        <div class="h-stage">
+          <span class="h-stage-glow" aria-hidden="true"></span>
+          <span class="h-stage-disc" aria-hidden="true"></span>
+          <svg class="h-ring" viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <path
+                id="ring-path"
+                d="M200,200 m-182,0 a182,182 0 1,1 364,0 a182,182 0 1,1 -364,0"
+              ></path>
+            </defs>
+            <text>
+              <textPath href="#ring-path">
+                TRAINED • VERIFIED • TRIAL-READY • GOOD PEOPLE • GREAT FOOD •
+              </textPath>
+            </text>
+          </svg>
+          <img
+            class="h-chef"
+            src="/images/hero-chef-cut-1000.webp"
+            srcset="/images/hero-chef-cut-560.webp 560w, /images/hero-chef-cut-1000.webp 1000w"
+            sizes="(max-width: 899px) 82vw, 40vw"
+            width="896"
+            height="1200"
+            alt="Smiling Instant Chefs chef in a white uniform with arms crossed"
+            fetchpriority="high"
+          />
+          <div class="h-dish h-dish-a" aria-hidden="true" data-parallax="0.08">
+            <Picture name="tandoor" alt="" eager sizes="120px" />
+          </div>
+          <div class="h-dish h-dish-b" aria-hidden="true" data-parallax="-0.06">
+            <Picture name="indian" alt="" eager sizes="120px" />
+          </div>
+          <a
+            class="h-logo-badge"
+            href="/about/"
+            aria-label="About Instant Chefs"
+          >
+            <img
+              src="/images/logo-mark-256.webp"
+              width="256"
+              height="256"
+              alt="Instant Chefs logo"
+            />
+          </a>
+          <div class="h-float h-float-a">
+            <span class="h-float-icon">
+              <Icon name="utensils" size={20} />
+            </span>
+            <div>
+              <strong>1-day trial</strong>
+              <small>Try before you hire</small>
+            </div>
+          </div>
+          <div class="h-float h-float-b">
+            <span class="h-float-icon">
+              <Icon name="users" size={20} />
+            </span>
+            <div>
+              <strong>2–3 candidates</strong>
+              <small>Direct interviews</small>
+            </div>
+          </div>
+          <div class="h-float h-float-c">
+            <span class="h-float-icon">
+              <Icon name="shield" size={20} />
+            </span>
+            <div>
+              <strong>Background-checked</strong>
+              <small>Skill-tested &amp; interviewed</small>
+            </div>
+          </div>
+          <span class="handwritten h-hand h-hand-a">
+            Great food starts
+            <br />
+            with great people ♥
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="h-marquee" aria-hidden="true">
+    <div class="h-marquee-track">
+      {[0, 1].map(() => (
+        <div class="h-marquee-group">
+          {services.map((s) => (
+            <span>
+              <Icon name={s.icon} size={20} />
+              {s.name}
+            </span>
+          ))}
+          <span>
+            <Icon name="chef" size={20} />
+            Hire smart. Hire Instant Chefs.
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section h-services" id="services">
+    <div class="container">
+      <SectionHeading
+        label="Our services"
+        title="Trusted staffing for every food business"
+        text="From commercial kitchens to homes, we provide skilled and reliable staff tailored to your needs."
+        centered
+      />
+      <ServicesGrid />
+      <div class="h-center-action" data-reveal>
+        <a class="btn btn-outline" href="/services/">
+          <span>View all services</span>
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="h-why" id="why" aria-labelledby="why-title">
+    <div class="container h-why-grid">
+      <div class="h-why-visual">
+        <div class="h-why-sticky">
+          <div class="h-why-photo" data-reveal="left">
+            <Picture
+              name="chef-portrait"
+              alt="Smiling chef in a white uniform with arms crossed in a restaurant kitchen"
+              sizes="(max-width: 900px) 90vw, 40vw"
+            />
+          </div>
+          <span class="handwritten h-why-hand">
+            Skilled people,
+            <br />
+            happier kitchens ♥
+          </span>
+          <div class="h-why-badge">
+            <strong>100%</strong>
+            <span>candidates background-checked &amp; skill-tested</span>
+          </div>
+        </div>
+      </div>
+      <div class="h-why-content">
+        <SectionHeading
+          label="Why choose us"
+          title="Why choose Instant Chefs?"
+          text="Reliable people. Better food. Smoother operations."
+          light
+          id="why-title"
+        />
+        <div class="h-why-cards">
+          {whyChoose.map((item, index) => (
+            <article
+              class="h-why-card ic-card"
+              data-reveal
+              style={`--reveal-delay:${(index % 2) * 90}ms`}
+              tabindex="0"
+            >
+              <span class="h-why-icon">
+                <Icon name={item.icon} size={26} />
+              </span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <a class="btn h-why-cta" href="/about/" data-reveal>
+          <span>More about us</span>
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUISINES SLIDESHOW -->
+  <section class="section h-cuisines" id="cuisines">
+    <div class="container">
+      <SectionHeading
+        label="Cuisines we cover"
+        title="Experts in every cuisine"
+        text="We provide chefs skilled in a wide range of cuisines to match your menu and business needs."
+        centered
+      />
+    </div>
+    <div class="h-slideshow" data-reveal>
+      <div class="h-slideshow-track">
+        {[0, 1].map((copy) => (
+          <ul class="h-slideshow-group" aria-hidden={copy ? 'true' : undefined}>
+            {cuisineSlides.map((c) => (
+              <li>
+                <a
+                  class="h-cuisine ic-card"
+                  href={c.href}
+                  tabindex={copy ? -1 : undefined}
+                >
+                  <Picture
+                    name={c.image}
+                    alt={copy ? '' : `${c.name} dishes`}
+                    sizes="(max-width: 600px) 46vw, 240px"
+                  />
+                  <span class="h-cuisine-label">{c.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section h-process" id="process">
+    <svg class="h-doodle-hat" viewBox="0 0 120 110" aria-hidden="true">
+      <path
+        d="M30 70c-22-4-26-36-2-40 4-18 30-24 40-8 16-12 40 0 34 22 18 8 10 30-8 28v26H30V70Zm0 10h64"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+    </svg>
+    <span class="handwritten h-process-hand">
+      Right people,
+      <br />
+      better food ♥
+    </span>
+    <div class="container">
+      <SectionHeading
+        label="How it works"
+        title="A simple process to hire the right chef"
+        text="Get skilled staff in just a few simple steps."
+        centered
+      />
+      <ProcessTimeline />
+      <div class="h-center-action" data-reveal>
+        <a class="btn" href="/how-it-works/">
+          <span>See the full process</span>
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY HORIZONTAL GALLERY -->
+  <section class="h-gallery" id="gallery" aria-labelledby="gallery-title">
+    <div class="h-gallery-pin">
+      <div class="container h-gallery-head">
+        <SectionHeading
+          label="Inside the kitchens we staff"
+          title="People who make kitchens work"
+          light
+          id="gallery-title"
+        />
+        <p class="h-gallery-hint" aria-hidden="true">
+          Keep scrolling <Icon name="arrow" size={16} />
+        </p>
+      </div>
+      <div class="h-gallery-viewport">
+        <ul class="h-gallery-track">
+          {gallery.map((item) => (
+            <li class="h-gallery-item ic-card">
+              <Picture
+                name={item.image}
+                alt={item.title}
+                sizes="(max-width: 800px) 80vw, 34vw"
+              />
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="container h-gallery-progress" aria-hidden="true">
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section h-pricing" id="plans">
+    <div class="container">
+      <SectionHeading
+        label="Our plans"
+        title="Simple & transparent pricing"
+        text="Affordable plans for chefs and home cooks. No hidden charges."
+        centered
+        light
+      />
+      <PricingCards />
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section h-impact" id="impact">
+    <div class="h-impact-spices" aria-hidden="true" data-parallax="0.12">
+      <Picture name="spices" alt="" sizes="260px" />
+    </div>
+    <div class="container">
+      <SectionHeading
+        label="Our promise"
+        title="Trusted by food businesses & homes"
+        text="A hiring process built to help kitchens and homes run smoothly with reliable staff."
+        centered
+      />
+      <div class="h-impact-grid">
+        {impact.map((item, index) => (
+          <article
+            class="h-stat ic-card"
+            data-reveal
+            style={`--reveal-delay:${index * 80}ms`}
+            tabindex="0"
+          >
+            <span class="h-stat-icon">
+              <Icon name={item.icon} size={26} />
+            </span>
+            <div>
+              <strong>
+                <span data-count={item.value}>{item.value}</span>
+                {item.suffix}
+              </strong>
+              <h3>{item.label}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISES SLIDER -->
+  <section class="section h-voices" id="for-you">
+    <div class="container">
+      <SectionHeading
+        label="Made for you"
+        title="What every client can expect"
+        text="Restaurants, families and food businesses each get a hiring process shaped around their kitchen."
+        centered
+      />
+      <div class="h-slider" data-slider data-reveal>
+        <button
+          type="button"
+          class="h-slider-btn prev"
+          aria-label="Previous"
+          data-slider-prev
+        >
+          <Icon name="arrow" size={20} />
+        </button>
+        <ul class="h-slider-track" data-slider-track>
+          {promises.map((p) => (
+            <li class="h-quote ic-card">
+              <span class="h-quote-mark" aria-hidden="true">
+                “
+              </span>
+              <p>{p.quote}</p>
+              <div class="h-quote-foot">
+                <span class="h-quote-icon">
+                  <Icon name={p.icon} size={20} />
+                </span>
+                <strong>{p.audience}</strong>
+                <a href={p.href} class="ic-text-link">
+                  Learn more <Icon name="northeast" size={14} />
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <button
+          type="button"
+          class="h-slider-btn next"
+          aria-label="Next"
+          data-slider-next
+        >
+          <Icon name="arrow" size={20} />
+        </button>
+        <div class="h-slider-dots" data-slider-dots></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ: photo and questions share one row and scroll together -->
+  <section class="section h-faq" id="faq">
+    <div class="container">
+      <SectionHeading
+        label="Questions"
+        title="Good questions. Clear answers."
+        text="Hiring someone new is a big decision. Here’s what most clients ask first."
+        centered
+      />
+      <div class="h-faq-grid">
+        <div class="h-faq-photo" data-reveal="left">
+          <Picture
+            name="trial"
+            alt="Restaurant owner tasting a dish prepared by a chef during a trial"
+            sizes="(max-width: 900px) 90vw, 42vw"
+          />
+          <span class="handwritten h-faq-hand">We’re only a call away ♥</span>
+        </div>
+        <div class="h-faq-list" data-reveal="right">
+          <FAQAccordion limit={5} />
+        </div>
+      </div>
+      <div class="h-center-action" data-reveal>
+        <a class="btn btn-outline" href="/faq/">
+          <span>See all questions</span>
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

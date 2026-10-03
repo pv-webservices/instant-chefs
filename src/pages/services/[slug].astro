@@ -1,0 +1,195 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProcessTimeline from '../../components/ProcessTimeline.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import Icon from '../../components/Icon.astro';
+import { services, faqs } from '../../data/business';
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+const { service } = Astro.props;
+const domestic = service.slug === 'domestic-staff';
+const home = service.slug === 'home-cook';
+const questions = domestic
+  ? [
+      {
+        q: 'Which domestic staff requirements can I discuss?',
+        a: 'You can discuss maid and gardener requirements for your household. Tell the team about the duties, schedule, location, experience and salary range.',
+      },
+      {
+        q: 'Do the published chef plans apply to domestic staff?',
+        a: 'The published plans are for chefs and home cooks. Please ask the team to confirm fees, availability, assessment and replacement terms for maid or gardener hiring before committing.',
+      },
+      {
+        q: 'How can I enquire?',
+        a: 'Call +91 8448496343 or prepare a requirement on the contact page to start a conversation on WhatsApp or email.',
+      },
+    ]
+  : [faqs[2], faqs[3], faqs[4]];
+---
+
+<Base
+  title={service.subtitle}
+  description={
+    service.description +
+    ' Direct interviews, practical chef trials and ongoing support from Instant Chefs in Faridabad.'
+  }
+  faq={questions}
+>
+  <PageHero
+    label={service.subtitle}
+    title={service.title}
+    text={service.description}
+    image={service.image}
+    imageAlt={`${service.name} environment, representative service photography`}
+    cta={domestic ? 'Discuss your requirement' : 'Find your next great hire'}
+    parent={{ title: 'Services', href: '/services/' }}
+  />
+  <section class="section">
+    <div class="container split-content">
+      <SectionHeading
+        label="MADE FOR THE WAY YOU WORK"
+        title={
+          domestic
+            ? 'A little help. A clearer brief.'
+            : home
+              ? 'A cook who feels at home.'
+              : 'Your kitchen sets the brief.'
+        }
+      />
+      <div class="prose" data-reveal>
+        <p>{service.intro}</p>
+        <a class="text-link" href={`/contact/?service=${service.slug}`}>
+          Share your requirement <Icon name="arrow" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="section warm-section">
+    <div class="container service-specific">
+      <div data-reveal>
+        <h2>{domestic ? 'Household roles to discuss' : 'Where we can help'}</h2>
+        <ul class="check-list">
+          {service.needs.map((need) => (
+            <li>
+              <Icon name="check" size={19} />
+              <span>{need}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div data-reveal>
+        <h2>Before we start, tell us…</h2>
+        <ul class="check-list">
+          {service.preparation.map((item) => (
+            <li>
+              <Icon name="chat" size={18} />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {!domestic && (
+    <section class="section">
+      <div class="container">
+        <SectionHeading
+          label="GET TO KNOW YOUR CHEF"
+          title="A conversation. A trial. A confident choice."
+          centered
+        />
+        <ProcessTimeline />
+        <div class="notice">
+          <p>
+            <strong>Make the trial work for you.</strong> {service.trial}{' '}
+            Payment is collected before the trial begins. Fees are
+            non-refundable after a candidate is hired.
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+  <section class="section process-section">
+    <div class="container">
+      <div class="detail-grid">
+        <article class="detail-card" data-reveal>
+          <Icon name={domestic ? 'chat' : 'shield'} size={30} />
+          <h3>
+            {domestic
+              ? 'Start with a conversation'
+              : 'Verification comes first'}
+          </h3>
+          <p>
+            {domestic
+              ? 'The team will discuss your household requirements and confirm availability for the role you need.'
+              : 'Every chef goes through a background check, skill test and interview before joining your shortlist.'}
+          </p>
+        </article>
+        <article class="detail-card" data-reveal>
+          <Icon name="utensils" size={30} />
+          <h3>
+            {domestic
+              ? 'Agree the practical details'
+              : 'Your choice, your kitchen'}
+          </h3>
+          <p>
+            {domestic
+              ? service.trial
+              : 'Speak to suitable candidates directly and try up to five chefs before your final staff choice. Assess the skills that matter to you.'}
+          </p>
+        </article>
+        <article class="detail-card" data-reveal>
+          <Icon name="refresh" size={30} />
+          <h3>
+            {domestic ? 'Clarify service terms' : 'Support beyond the hire'}
+          </h3>
+          <p>
+            {domestic
+              ? 'Confirm the service fee, assessment process and replacement conditions with the team before payment.'
+              : 'Free chef replacements are included within your selected plan duration, alongside ongoing hiring support.'}
+          </p>
+          <a href={domestic ? '/contact/' : '/plans/'} class="text-link">
+            {domestic ? 'Talk to our team' : 'Explore hiring plans'}
+            <Icon name="arrow" size={17} />
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container faq-grid">
+      <SectionHeading
+        label="A LITTLE CLARITY"
+        title="Questions about your next hire?"
+      />
+      <FAQAccordion items={questions} />
+    </div>
+  </section>
+  <section class="section warm-section">
+    <div class="container split-content">
+      <SectionHeading
+        label="ANOTHER KIND OF KITCHEN?"
+        title="Find the service that feels right."
+      />
+      <ul class="check-list">
+        {services
+          .filter((s) => s.slug !== service.slug)
+          .map((s) => (
+            <li>
+              <Icon name={s.icon} size={20} />
+              <a class="text-link" href={`/services/${s.slug}/`}>
+                {s.name}
+                <Icon name="northeast" size={16} />
+              </a>
+            </li>
+          ))}
+      </ul>
+    </div>
+  </section>
+</Base>

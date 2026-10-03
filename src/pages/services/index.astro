@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProcessTimeline from '../../components/ProcessTimeline.astro';
+import Icon from '../../components/Icon.astro';
+---
+
+<Base
+  title="Chef & Staffing Services for Businesses and Homes"
+  description="Explore restaurant, café, cloud kitchen, bakery, catering, home cook and domestic staffing services. Meet suitable candidates with Instant Chefs."
+>
+  <PageHero
+    label="Our services"
+    title="Every kitchen has its own recipe. So does every hire."
+    text="Chef and staffing solutions shaped around your menu, your team and the way you work. Find the service that fits your kitchen."
+    image="hero-kitchen"
+    imageAlt="Busy restaurant kitchen with chefs cooking over flames"
+  />
+  <section class="section">
+    <div class="container">
+      <h2 class="sr-only">Explore our staffing services</h2>
+      <ServicesGrid all />
+      <div class="notice">
+        <p>
+          <strong>Let’s make sure we’re a match.</strong> Home cook hiring is
+          for full-time live-in requirements. Catering support is for long-term
+          business staffing. Domestic staff availability and service terms are
+          confirmed during your consultation.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section process-section">
+    <div class="container">
+      <SectionHeading
+        label="PERSONAL FROM THE FIRST CONVERSATION"
+        title="Tell us what you need. We’ll take it from there."
+        text="A shortlist that makes sense, direct interviews and a practical chef trial before you decide."
+        centered
+      />
+      <ProcessTimeline />
+      <div class="section-action">
+        <a class="button button-dark" href="/how-it-works/">
+          Explore the hiring process <Icon name="arrow" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
