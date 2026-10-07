@@ -13,7 +13,7 @@ export const business = {
 
 // TODO: replace the placeholder name with the director's real name.
 export const director = {
-  name: 'Director Name',
+  name: 'Sanjay Dureja',
   role: 'Director, Instant Chefs',
   image: '/director-image.webp',
   quote:
