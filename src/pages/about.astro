@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import Icon from '../components/Icon.astro';
-import { features } from '../data/business';
+import { director, features } from '../data/business';
 ---
 
 <Base
@@ -46,7 +46,38 @@ import { features } from '../data/business';
       </div>
     </div>
   </section>
-  <section class="section warm-section">
+  <section class="section warm-section" aria-labelledby="director-heading">
+    <div class="container director">
+      <figure class="director-photo" data-reveal>
+        <img
+          src={director.image}
+          alt={`${director.name}, ${director.role}`}
+          width="800"
+          height="1000"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          <strong>{director.name}</strong>
+          <span>{director.role}</span>
+        </figcaption>
+      </figure>
+      <div class="director-content">
+        <SectionHeading
+          id="director-heading"
+          label="MEET OUR DIRECTOR"
+          title="The person behind every match."
+        />
+        <blockquote class="director-quote" data-reveal>
+          <p>“{director.quote}”</p>
+        </blockquote>
+        <div class="prose" data-reveal>
+          {director.bio.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
     <div class="container">
       <SectionHeading
         label="A LITTLE MORE CARE AT EVERY STEP"

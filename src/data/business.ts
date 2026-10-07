@@ -11,6 +11,19 @@ export const business = {
     'https://www.google.com/maps/search/?api=1&query=WorkWorm%20co-working%20space%20Metro%20Station%20Pillar%20539%2013B%20NHPC%20Chowk%20Sector%2032%20Faridabad%20121003',
 };
 
+// TODO: replace the placeholder name with the director's real name.
+export const director = {
+  name: 'Director Name',
+  role: 'Director, Instant Chefs',
+  image: '/director-image.webp',
+  quote:
+    'A good chef changes the whole mood of a kitchen. Our job is to find that person for you, and to stay with you after they start.',
+  bio: [
+    'Instant Chefs was started with a simple idea: hiring kitchen staff should feel personal, not like a gamble. Restaurant owners and families should be able to meet real candidates, see them cook and decide with confidence.',
+    'Our director leads the team that verifies every chef, matches candidates to each kitchen’s cuisine and budget, and keeps support running long after the hire. Every client conversation starts with listening to how your kitchen actually works.',
+  ],
+};
+
 export const navigation = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
