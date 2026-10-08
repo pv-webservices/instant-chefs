@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { business, services } from '../data/business';
+const whatsappText = encodeURIComponent(
+  'Hi Instant Chefs! I would like to discuss a staffing requirement.',
+);
+---
+
+<nav class="helpful-links" aria-labelledby="helpful-links-title">
+  <h2 id="helpful-links-title">Where would you like to go?</h2>
+  <div class="helpful-links-grid">
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/services/">All services</a>
+        </li>
+        <li>
+          <a href="/how-it-works/">How it works</a>
+        </li>
+        <li>
+          <a href="/plans/">Plans &amp; pricing</a>
+        </li>
+        <li>
+          <a href="/faq/">FAQ</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>Popular services</h3>
+      <ul>
+        {services.slice(0, 6).map((service) => (
+          <li>
+            <a href={`/services/${service.slug}/`}>{service.subtitle}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3>Talk to us</h3>
+      <ul class="helpful-links-contact">
+        <li>
+          <a href="/contact/">
+            <Icon name="mail" size={18} /> Contact page
+          </a>
+        </li>
+        <li>
+          <a href={business.tel}>
+            <Icon name="phone" size={18} /> Call {business.phone}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${business.whatsapp}?text=${whatsappText}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WhatsAppIcon size={18} /> WhatsApp us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -16,6 +16,7 @@ import {
   gallery,
   faqs,
 } from '../data/business';
+import logoMark256 from '../assets/images/brand/logo-mark-256.webp';
 import '../styles/home.css';
 
 const slug = (name: string) => name.toLowerCase().replaceAll(' ', '-');
@@ -31,8 +32,8 @@ const cuisineSlides = [
 
 <Base
   title="Hire Smart. Hire Instant Chefs."
-  description="Trained, verified chefs and domestic staff for restaurants, cafés, cloud kitchens, bakeries, catering businesses and homes. Interviews, 1-day trials and replacement support from Faridabad."
-  faq={faqs.slice(0, 4)}
+  description="Trained, verified chefs and domestic staff for restaurants, cafés, cloud kitchens, bakeries, catering and homes. Interviews, 1-day trials and replacement support."
+  faq={faqs.slice(0, 5)}
 >
   <!-- HERO -->
   <section class="h-hero" aria-labelledby="hero-title">
@@ -40,7 +41,7 @@ const cuisineSlides = [
       <Picture
         name="hero-kitchen"
         alt=""
-        eager
+        priority
         sizes="(max-width: 800px) 100vw, 60vw"
       />
     </div>
@@ -122,15 +123,12 @@ const cuisineSlides = [
               </textPath>
             </text>
           </svg>
-          <img
+          <Picture
             class="h-chef"
-            src="/images/hero-chef-cut-1000.webp"
-            srcset="/images/hero-chef-cut-560.webp 560w, /images/hero-chef-cut-1000.webp 1000w"
+            name="hero-chef-cut"
             sizes="(max-width: 899px) 82vw, 40vw"
-            width="896"
-            height="1200"
-            alt="Smiling Instant Chefs chef in a white uniform with arms crossed"
-            fetchpriority="high"
+            alt="Smiling chef in a white uniform with arms crossed"
+            eager
           />
           <div class="h-dish h-dish-a" aria-hidden="true" data-parallax="0.08">
             <Picture name="tandoor" alt="" eager sizes="120px" />
@@ -143,12 +141,7 @@ const cuisineSlides = [
             href="/about/"
             aria-label="About Instant Chefs"
           >
-            <img
-              src="/images/logo-mark-256.webp"
-              width="256"
-              height="256"
-              alt="Instant Chefs logo"
-            />
+            <img src={logoMark256.src} width="256" height="256" alt="" />
           </a>
           <div class="h-float h-float-a">
             <span class="h-float-icon">
@@ -365,7 +358,12 @@ const cuisineSlides = [
           Keep scrolling <Icon name="arrow" size={16} />
         </p>
       </div>
-      <div class="h-gallery-viewport">
+      <div
+        class="h-gallery-viewport"
+        role="region"
+        aria-label="Kitchen photo gallery"
+        tabindex="0"
+      >
         <ul class="h-gallery-track">
           {gallery.map((item) => (
             <li class="h-gallery-item ic-card">
@@ -470,7 +468,11 @@ const cuisineSlides = [
                 </span>
                 <strong>{p.audience}</strong>
                 <a href={p.href} class="ic-text-link">
-                  Learn more <Icon name="northeast" size={14} />
+                  Learn more
+                  <span class="sr-only">
+                    {p.audience.replace('For ', 'for ')}
+                  </span>
+                  <Icon name="northeast" size={14} />
                 </a>
               </div>
             </li>

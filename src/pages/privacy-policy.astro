@@ -6,7 +6,7 @@ import { business } from '../data/business';
 
 <Base
   title="Privacy Policy"
-  description="How the Instant Chefs website handles your staffing enquiry, contact details and links to WhatsApp, email, Instagram and maps."
+  description="How the Instant Chefs website handles your staffing enquiry: contact form delivery through FormSubmit, WhatsApp, email, Instagram and map links."
   cta={false}
 >
   <PageHero
@@ -18,31 +18,41 @@ import { business } from '../data/business';
     <article class="container legal-content">
       <h2>Information you choose to share</h2>
       <p>
-        The contact form asks for your name, mobile number, location and
-        staffing requirement. You may also provide an email address, business
-        type, cuisine, experience requirement, salary range, preferred plan and
-        a message. Please share only information relevant to your enquiry.
+        The contact form asks for your name, email address, phone number and a
+        message, and for your agreement to this policy. You may also provide
+        your location, business or household type, staff and cuisine
+        requirement, preferred plan, experience requirement and salary range.
+        Please share only information relevant to your staffing enquiry.
       </p>
-      <h2>How the website form works</h2>
+      <h2>How the contact form is processed</h2>
       <p>
-        Preparing an enquiry creates a message in your browser. This website
-        does not send the form to a database or email service, and does not save
-        the form in browser storage. Nothing is sent to Instant Chefs when you
-        press “Prepare my enquiry”.
+        When you press “Send enquiry”, the details you entered are sent to
+        <a
+          href="https://formsubmit.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          FormSubmit
+        </a>
+        , a third-party form service, which delivers them by email to the
+        Instant Chefs Gmail inbox ({business.email}). FormSubmit and Google
+        (Gmail) process that information under their own privacy terms. This
+        website does not store your enquiry in its own database or in browser
+        storage.
       </p>
       <p>
-        If you choose “Open WhatsApp” or “Open email”, your prepared message is
-        passed to that service as a draft. Review it and send it there if you
-        wish. Opening WhatsApp passes the draft in the link to WhatsApp, even
-        before you send the message. Those services handle information under
-        their own privacy terms.
+        FormSubmit may show a short spam check before delivering your message.
+        If you choose “Send via WhatsApp” instead, the details you entered are
+        passed to WhatsApp as a draft message for you to review and send;
+        WhatsApp handles that information under its own privacy terms.
       </p>
       <h2>When you contact the team</h2>
       <p>
-        Information you send through WhatsApp, email or a phone conversation is
-        used by the team to understand your staffing requirement and respond to
-        your enquiry. Before candidate interviews, discuss with the team which
-        details need to be shared for hiring coordination.
+        Information you send through the contact form, WhatsApp, email or a
+        phone conversation is used by the team to understand your staffing
+        requirement and respond to your enquiry. Before candidate interviews,
+        discuss with the team which details need to be shared for hiring
+        coordination.
       </p>
       <h2>Cookies, browser storage and hosting</h2>
       <p>
@@ -69,9 +79,8 @@ import { business } from '../data/business';
       </p>
       <h2>Updates</h2>
       <p>
-        If form submission, analytics or other integrations are added, this
-        policy should be updated to reflect how those services handle
-        information.
+        If analytics or other integrations are added, this policy will be
+        updated to reflect how those services handle information.
       </p>
     </article>
   </section>

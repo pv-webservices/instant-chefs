@@ -11,11 +11,9 @@ export const business = {
     'https://www.google.com/maps/search/?api=1&query=WorkWorm%20co-working%20space%20Metro%20Station%20Pillar%20539%2013B%20NHPC%20Chowk%20Sector%2032%20Faridabad%20121003',
 };
 
-// TODO: replace the placeholder name with the director's real name.
 export const director = {
   name: 'Sanjay Dureja',
   role: 'Director, Instant Chefs',
-  image: '/director-image.webp',
   quote:
     'A good chef changes the whole mood of a kitchen. Our job is to find that person for you, and to stay with you after they start.',
   bio: [
@@ -372,10 +370,28 @@ export const faqs = [
   },
   {
     q: 'How do I start my chef search?',
-    a: 'Call +91 8448496343, start a WhatsApp conversation or use the contact form to prepare your requirement. Share the staff type, cuisine, experience, salary range and location.',
+    a: 'Call +91 8448496343, start a WhatsApp conversation or send your requirement through the contact form. Share the staff type, cuisine, experience, salary range and location.',
   },
 ];
 
+/** Short page names used by visible breadcrumbs and BreadcrumbList schema. */
+export const pageNames: Record<string, string> = {
+  '/about/': 'About',
+  '/services/': 'Services',
+  ...Object.fromEntries(
+    services.map((s) => [`/services/${s.slug}/`, s.subtitle]),
+  ),
+  '/cuisines/': 'Cuisines',
+  '/how-it-works/': 'How it works',
+  '/plans/': 'Plans & pricing',
+  '/faq/': 'FAQ',
+  '/contact/': 'Contact',
+  '/privacy-policy/': 'Privacy policy',
+  '/terms/': 'Terms & conditions',
+  '/thank-you/': 'Thank you',
+};
+
+/** Indexable routes, in sitemap order. Utility pages (404, thank-you) are excluded. */
 export const routes = [
   '/',
   '/about/',

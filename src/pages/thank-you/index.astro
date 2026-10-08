@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import HelpfulLinks from '../../components/HelpfulLinks.astro';
+import Icon from '../../components/Icon.astro';
+import { business } from '../../data/business';
+---
+
+<Base
+  title="Thank You for Your Enquiry"
+  description="Thank you for contacting Instant Chefs. Your staffing enquiry has been sent to our team. Call or WhatsApp us if your requirement is urgent."
+  cta={false}
+  noindex
+>
+  <section class="section warm-section utility-page">
+    <div class="container">
+      <span class="utility-icon" aria-hidden="true">
+        <Icon name="check" size={34} />
+      </span>
+      <span class="eyebrow">Enquiry sent</span>
+      <h1>Thank you. Your enquiry is on its way.</h1>
+      <p>
+        We’ve received the details you shared through our contact form. The team
+        will review your requirement and get back to you using the contact
+        details you provided.
+      </p>
+      <p>
+        Need to add something or speak to someone sooner? Call{' '}
+        <a href={business.tel}>{business.phone}</a> or message us on WhatsApp.
+      </p>
+      <div class="button-row">
+        <a href="/" class="button">
+          Back to home <Icon name="arrow" size={18} />
+        </a>
+        <a href="/contact/" class="button button-outline">
+          Back to contact
+        </a>
+      </div>
+      <HelpfulLinks />
+    </div>
+  </section>
+</Base>

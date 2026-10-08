@@ -1,64 +1,129 @@
 ---
 import Icon from './Icon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import { services, cuisines, business, plans } from '../data/business';
+import { LIMITS } from '../scripts/form-validation';
+
+const FORM_ENDPOINT = `https://formsubmit.co/${business.email}`;
+// Redirect to our own Thank You page only when the real production origin is
+// known; otherwise FormSubmit shows its default confirmation page.
+const thankYouUrl = __SITE_INDEXABLE__
+  ? new URL('/thank-you/', Astro.site).href
+  : undefined;
+const planLabel = (plan: (typeof plans)[number]) =>
+  `${plan.name} · ${plan.months} months · ₹${plan.fee.toLocaleString('en-IN')}`;
 ---
 
 <div class="contact-card">
   <h2>Tell us about your kitchen.</h2>
   <p>
-    A few details help us find your fit. Prepare your enquiry, review it, then
-    send it through WhatsApp or email.
+    Send your requirement straight to our team. Fields marked
+    <span aria-hidden="true">*</span>
+    <span class="sr-only">required</span> are required.
   </p>
-  <form id="enquiry-form" class="enquiry-form">
+  <form
+    id="enquiry-form"
+    class="enquiry-form"
+    action={FORM_ENDPOINT}
+    method="POST"
+    accept-charset="UTF-8"
+  >
+    <input
+      type="hidden"
+      name="_subject"
+      value="New Website Enquiry - Instant Chefs"
+    />
+    <input type="hidden" name="_template" value="table" />
+    {thankYouUrl && <input type="hidden" name="_next" value={thankYouUrl} />}
+    <div class="form-honeypot" aria-hidden="true">
+      <label for="website-field">Leave this field empty</label>
+      <input
+        id="website-field"
+        type="text"
+        name="_honey"
+        tabindex="-1"
+        autocomplete="off"
+        style="display:none"
+      />
+    </div>
+    <p id="form-summary" class="form-summary" role="alert" hidden></p>
     <div class="form-grid">
       <div class="field">
         <label for="full-name">
-          Full name <span>(required)</span>
+          Name{' '}
+          <span class="required-mark" aria-hidden="true">
+            *
+          </span>
         </label>
         <input
           id="full-name"
-          name="Full name"
+          name="name"
           type="text"
           autocomplete="name"
           required
-          minlength="2"
-          maxlength="80"
-          placeholder="Your name"
+          minlength={LIMITS.nameMin}
+          maxlength={LIMITS.nameMax}
+          aria-describedby="full-name-error"
+          data-validate="name"
         />
-      </div>
-      <div class="field">
-        <label for="mobile-number">
-          Mobile number <span>(required)</span>
-        </label>
-        <input
-          id="mobile-number"
-          name="Mobile number"
-          type="tel"
-          autocomplete="tel"
-          required
-          inputmode="tel"
-          maxlength="20"
-          placeholder="Your mobile number"
-        />
+        <p class="field-error" id="full-name-error" hidden></p>
       </div>
       <div class="field">
         <label for="email-address">
-          Email <span>(optional)</span>
+          Email{' '}
+          <span class="required-mark" aria-hidden="true">
+            *
+          </span>
         </label>
         <input
           id="email-address"
-          name="Email"
+          name="email"
           type="email"
           autocomplete="email"
+          required
+          maxlength={LIMITS.emailMax}
+          aria-describedby="email-address-error"
+          data-validate="email"
+        />
+        <p class="field-error" id="email-address-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="mobile-number">
+          Phone{' '}
+          <span class="required-mark" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input
+          id="mobile-number"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          inputmode="tel"
+          required
+          pattern="\+?[0-9\s\(\)\-]{10,20}"
+          maxlength={LIMITS.phoneMax}
+          aria-describedby="mobile-number-hint mobile-number-error"
+          data-validate="phone"
+        />
+        <p class="field-hint" id="mobile-number-hint">
+          10–15 digits, e.g. +91 84484 96343
+        </p>
+        <p class="field-error" id="mobile-number-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="location">Kitchen / home location</label>
+        <input
+          id="location"
+          name="location"
+          autocomplete="address-level2"
           maxlength="120"
-          placeholder="you@example.com"
+          placeholder="City and area"
         />
       </div>
       <div class="field">
-        <label for="business-type">
-          Business / household type <span>(required)</span>
-        </label>
-        <select id="business-type" name="Business / household type" required>
+        <label for="business-type">Business / household type</label>
+        <select id="business-type" name="business_type">
           <option value="">Select your kitchen</option>
           {services.map((service) => (
             <option value={service.name}>{service.name}</option>
@@ -67,10 +132,8 @@ import { services, cuisines, business, plans } from '../data/business';
         </select>
       </div>
       <div class="field">
-        <label for="staff-requirement">
-          Staff requirement <span>(required)</span>
-        </label>
-        <select id="staff-requirement" name="Staff requirement" required>
+        <label for="staff-requirement">Staff requirement</label>
+        <select id="staff-requirement" name="staff_requirement">
           <option value="">Who are you looking for?</option>
           <option>Chef</option>
           <option>Bakery staff</option>
@@ -82,7 +145,7 @@ import { services, cuisines, business, plans } from '../data/business';
       </div>
       <div class="field">
         <label for="cuisine">Cuisine requirement</label>
-        <select id="cuisine" name="Cuisine requirement">
+        <select id="cuisine" name="cuisine">
           <option value="">Select a cuisine, if relevant</option>
           {cuisines.map((cuisine) => (
             <option>{cuisine.name}</option>
@@ -93,10 +156,21 @@ import { services, cuisines, business, plans } from '../data/business';
         </select>
       </div>
       <div class="field">
+        <label for="selected-plan">Hiring plan</label>
+        <select id="selected-plan" name="plan">
+          <option value="">Help me choose a plan</option>
+          {plans.map((plan) => (
+            <option value={planLabel(plan)} data-plan={plan.id}>
+              {planLabel(plan)}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div class="field">
         <label for="experience">Experience requirement</label>
         <input
           id="experience"
-          name="Experience requirement"
+          name="experience"
           maxlength="100"
           placeholder="e.g. 3 years in a restaurant"
         />
@@ -105,103 +179,81 @@ import { services, cuisines, business, plans } from '../data/business';
         <label for="salary">Preferred salary range</label>
         <input
           id="salary"
-          name="Preferred salary range"
+          name="salary_range"
           maxlength="80"
           placeholder="e.g. ₹20,000–₹25,000 per month"
         />
       </div>
-      <div class="field">
-        <label for="location">
-          Kitchen / home location <span>(required)</span>
-        </label>
-        <input
-          id="location"
-          name="Location"
-          autocomplete="address-level2"
-          required
-          minlength="2"
-          maxlength="120"
-          placeholder="City and area"
-        />
-      </div>
-      <div class="field">
-        <label for="selected-plan">Hiring plan</label>
-        <select id="selected-plan" name="Hiring plan">
-          <option value="">Help me choose a plan</option>
-          {plans.map((plan) => (
-            <option value={plan.id}>
-              {plan.name} · {plan.months} months · ₹
-              {plan.fee.toLocaleString('en-IN')}
-            </option>
-          ))}
-        </select>
-      </div>
       <div class="field field-full">
-        <label for="message">Anything else we should know?</label>
+        <label for="message">
+          Message{' '}
+          <span class="required-mark" aria-hidden="true">
+            *
+          </span>
+        </label>
         <textarea
           id="message"
-          name="Message"
-          rows="4"
-          maxlength="1500"
+          name="message"
+          rows="5"
+          required
+          minlength={LIMITS.messageMin}
+          maxlength={LIMITS.messageMax}
+          aria-describedby="message-hint message-error"
+          data-validate="message"
           placeholder="Your menu, schedule or anything that matters to your hire."
-        />
+        ></textarea>
+        <p class="field-hint" id="message-hint">
+          At least {LIMITS.messageMin} characters.
+        </p>
+        <p class="field-error" id="message-error" hidden></p>
+      </div>
+      <div class="field field-full field-check">
+        <div class="check-row">
+          <input
+            id="consent"
+            name="consent"
+            type="checkbox"
+            value="Agreed to the privacy policy"
+            required
+            aria-describedby="consent-error"
+            data-validate="consent"
+          />
+          <label for="consent">
+            I agree to the <a href="/privacy-policy/">privacy policy</a> and
+            consent to Instant Chefs using these details to respond to my
+            enquiry.{' '}
+            <span class="required-mark" aria-hidden="true">
+              *
+            </span>
+          </label>
+        </div>
+        <p class="field-error" id="consent-error" hidden></p>
       </div>
     </div>
     <p class="form-help">
-      Please share only information needed for your staffing enquiry. Preparing
-      a message keeps it in this page; opening WhatsApp or email lets you review
-      and send it there. See our <a href="/privacy-policy/">privacy policy</a>.
+      Your enquiry is delivered to the Instant Chefs team by email through
+      FormSubmit. Please share only information needed for your staffing
+      enquiry.
     </p>
-    <button type="submit" class="button">
-      Prepare my enquiry <Icon name="arrow" size={18} />
-    </button>
-    <div
-      id="enquiry-preview"
-      class="enquiry-preview"
-      hidden
-      tabindex="-1"
-      aria-labelledby="preview-heading"
-    >
-      <h3 id="preview-heading">Your enquiry is ready to review.</h3>
-      <p id="enquiry-status" role="status">
-        Nothing has been sent yet. Choose WhatsApp or email below and send your
-        message there.
-      </p>
-      <pre id="enquiry-message"></pre>
-      <div class="button-row">
-        <a
-          id="send-whatsapp"
-          class="button"
-          href={business.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="chat" size={19} />
-          Open WhatsApp
-        </a>
-        <a
-          id="send-email"
-          class="button button-outline"
-          href={`mailto:${business.email}`}
-        >
-          <Icon name="mail" size={18} />
-          Open email
-        </a>
-      </div>
+    <div class="form-actions">
+      <button type="submit" class="button" id="enquiry-submit">
+        <span data-label>Send enquiry</span>
+        <Icon name="arrow" size={18} />
+      </button>
+      <button
+        type="button"
+        class="button button-outline"
+        id="send-whatsapp"
+        hidden
+      >
+        <WhatsAppIcon size={18} />
+        Send via WhatsApp
+      </button>
     </div>
-  </form>
-  <noscript>
-    <style>
-      .enquiry-form {
-        display: none;
-      }
-    </style>
-    <p class="form-noscript">
-      Call <a href={business.tel}>{business.phone}</a> or{' '}
-      <a href={business.whatsapp}>open WhatsApp</a> to share your requirement.
-      The enquiry preparation form requires JavaScript.
+    <p class="form-help">
+      Prefer to talk? Call <a href={business.tel}>{business.phone}</a>.
     </p>
-  </noscript>
+  </form>
 </div>
 <script>
   import { initEnquiryForm } from '../scripts/enquiry';

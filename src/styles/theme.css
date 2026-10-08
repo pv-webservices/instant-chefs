@@ -1741,3 +1741,199 @@ h2 {
     margin-inline: auto;
   }
 }
+
+/* ---------- Performance: no continuous repaints at rest ----------
+   Gradient "flow" animations change background-position, which repaints on
+   every frame. They now play only while a control is hovered or focused. */
+.btn,
+.button,
+.btn-outline::before,
+.button-outline::before,
+.ic-cta-card,
+.ic-mobile-bar .ic-mobile-bar-cta,
+.ic-float-chat {
+  animation-play-state: paused;
+}
+.ic-float-chat {
+  animation-play-state: paused, running;
+}
+.btn:hover,
+.btn:focus-visible,
+.button:hover,
+.button:focus-visible,
+.btn-outline:hover::before,
+.btn-outline:focus-visible::before,
+.button-outline:hover::before,
+.button-outline:focus-visible::before,
+.ic-cta-card:hover,
+.ic-mobile-bar .ic-mobile-bar-cta:active,
+.ic-float-chat:hover,
+.ic-float-chat:focus-visible {
+  animation-play-state: running;
+}
+
+/* ---------- Accessibility: AA text contrast on light backgrounds ---------- */
+.ic-brand strong,
+.eyebrow,
+.faq-number {
+  color: var(--orange-deep);
+}
+
+/* ---------- Contact form (FormSubmit) ---------- */
+.form-honeypot {
+  display: none;
+}
+.required-mark {
+  color: var(--orange-deep);
+  font-weight: 800;
+}
+.field-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.field-error {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a12d14;
+}
+.field [aria-invalid='true'] {
+  border-color: #a12d14 !important;
+  box-shadow: 0 0 0 3px rgb(161 45 20 / 14%);
+}
+.form-summary {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border-left: 4px solid #a12d14;
+  border-radius: 10px;
+  background: #fff1ec;
+  color: #7c210e;
+  font-size: 14px;
+  font-weight: 700;
+}
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.field .check-row input[type='checkbox'] {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  min-height: 0;
+  margin: 2px 0 0;
+  padding: 0;
+  accent-color: var(--orange-deep);
+}
+.check-row label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+.check-row label a,
+.form-help a {
+  color: var(--orange-deep);
+  text-decoration: underline;
+}
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+.contact-card .form-actions .button {
+  flex: 1 1 220px;
+  width: auto;
+  margin-top: 0;
+}
+.contact-card .button[disabled] {
+  cursor: progress;
+  opacity: 0.75;
+  transform: none;
+}
+
+/* ---------- Utility pages: 404 and thank-you ---------- */
+.utility-page .container {
+  max-width: 980px;
+  text-align: center;
+}
+.utility-page h1 {
+  margin: 18px auto;
+  max-width: 720px;
+}
+.utility-page p {
+  max-width: 640px;
+  margin: 0 auto 16px;
+}
+.utility-page .button-row {
+  justify-content: center;
+  margin-top: 26px;
+}
+.utility-icon {
+  display: grid;
+  margin-inline: auto;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange-2), var(--orange));
+  color: #fff;
+}
+.helpful-links {
+  margin-top: 56px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  text-align: left;
+}
+.helpful-links h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.helpful-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+.helpful-links h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.helpful-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.helpful-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 4px;
+}
+.helpful-links a:hover {
+  color: var(--orange-deep);
+}
+/* Low specificity so dark-section kicker colours in home.css still apply. */
+:where(.ic-kicker):not(.ic-kicker-dark),
+.ic-nav > a[aria-current] {
+  color: var(--orange-deep);
+}
+.ic-more {
+  opacity: 1;
+}
+.ic-nav > a[aria-current] {
+  color: #9a3412;
+}
+.ic-footer .ic-brand strong {
+  color: var(--orange-2);
+}

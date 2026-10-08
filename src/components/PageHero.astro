@@ -2,6 +2,7 @@
 import Breadcrumb from './Breadcrumb.astro';
 import Picture from './Picture.astro';
 import Icon from './Icon.astro';
+import { pageNames } from '../data/business';
 interface Props {
   label: string;
   title: string;
@@ -18,7 +19,10 @@ const { label, title, text, image, imageAlt, cta, parent } = Astro.props;
   <span class="ic-blob ic-blob-a" aria-hidden="true"></span>
   <span class="ic-blob ic-blob-b" aria-hidden="true"></span>
   <div class="container">
-    <Breadcrumb title={label} parent={parent} />
+    <Breadcrumb
+      title={pageNames[Astro.url.pathname] ?? label}
+      parent={parent}
+    />
     <div class="ic-page-hero-inner">
       <div class="ic-page-hero-copy">
         <span class="ic-kicker">{label}</span>
@@ -41,7 +45,7 @@ const { label, title, text, image, imageAlt, cta, parent } = Astro.props;
           <Picture
             name={image}
             alt={imageAlt || label}
-            eager
+            priority
             sizes="(max-width: 800px) 100vw, 45vw"
           />
           <span class="ic-page-hero-badge">

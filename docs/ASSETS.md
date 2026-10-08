@@ -1,5 +1,7 @@
 # Photography sources
 
+All website photographs now live in `src/assets/images/editorial/` (`<name>-<width>.webp`); the director portrait is in `src/assets/images/people/`, logo marks in `src/assets/images/brand/`. Astro serves them with hashed file names without re-encoding. Favicons, app icons and the 1200×630 social image (`public/images/og-image.jpg`) are generated from `source-files/website-logo.jpeg` by `npm run assets:brand`.
+
 Images are delivered locally as optimized WebP in responsive sizes (two per photograph, three for the hero chef). These are representative stock photographs, not staff portraits or customer evidence. The supplied logo is the actual client brand asset. Unsplash license reference: https://unsplash.com/license
 
 | Asset        | Original delivery source                                     |
@@ -28,7 +30,7 @@ Ten images were generated with Google Gemini `gemini-3.1-flash-lite-image` (Nano
 
 | Asset         | Used for                                          |
 | ------------- | ------------------------------------------------- |
-| hero-chef     | Homepage hero (cut-out `hero-chef-cut-*.webp` made by `.work/cutout.mjs`) |
+| hero-chef     | Homepage hero (cut-out `hero-chef-cut-560/896.webp`) |
 | chef-portrait | Homepage "Why choose us" sticky photo, Plans hero |
 | chef-cta      | Contact CTA banner, Contact hero                  |
 | hero-kitchen  | Homepage hero backdrop, gallery, Services hero    |
@@ -39,4 +41,4 @@ Ten images were generated with Google Gemini `gemini-3.1-flash-lite-image` (Nano
 | more-cuisines | "& More" cuisine slide, Cuisines hero             |
 | spices        | Decorative homepage impact section                |
 
-Logo derivatives from `public/website logo.jpeg`: `logo-mark-128/256.webp` (square crop for header, footer, favicon) and `logo-hero-480/720.webp` (homepage hero).
+Logo derivatives from `source-files/website-logo.jpeg`: `logo-mark-128/256.webp` (header, footer, hero badge). The unused `logo-hero-*`, `brand.webp`, `chef-*`, `home-*` and non-cut-out `hero-chef-*` files were removed in the October 2026 audit.

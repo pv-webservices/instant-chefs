@@ -1,0 +1,20 @@
+export const indexableRoutes = [
+  '/',
+  '/about/',
+  '/services/',
+  '/services/restaurant-chef-hiring/',
+  '/services/cafe-staffing/',
+  '/services/cloud-kitchen-chefs/',
+  '/services/bakery-staff/',
+  '/services/catering-staff/',
+  '/services/home-cook/',
+  '/services/domestic-staff/',
+  '/cuisines/',
+  '/how-it-works/',
+  '/plans/',
+  '/faq/',
+  '/contact/',
+  '/privacy-policy/',
+  '/terms/',
+];
+export const allRoutes = [...indexableRoutes, '/thank-you/'];

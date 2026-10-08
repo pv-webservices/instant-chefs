@@ -1,0 +1,74 @@
+# Netlify build, redirect and header configuration.
+# Netlify serves dist/404.html with a genuine HTTP 404 for unknown routes.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# The Netlify subdomain must not serve a duplicate copy of the site.
+# Deploy previews use other hostnames and are unaffected.
+[[redirects]]
+  from = "https://instant-chefs.netlify.app/*"
+  to = "https://instantchefs.in/:splat"
+  status = 301
+  force = true
+
+# The homepage has one canonical URL: "/".
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# Pages are generated as directories, so "/about/index.html" -> "/about/".
+# Netlify already 301-redirects "/about" to "/about/" (Pretty URLs).
+[[redirects]]
+  from = "/:page/index.html"
+  to = "/:page/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/:section/:page/index.html"
+  to = "/:section/:page/"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Astro emits content-hashed file names here, so they never change in place.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Stable-named icons and the social image: cache for a week, then revalidate.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/favicon.*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
+    Cache-Control = "public, max-age=604800, must-revalidate"

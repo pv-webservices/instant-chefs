@@ -7,3 +7,11 @@ output/
 .env
 .env.*
 !.env.example
+
+# Local Netlify folder
+.netlify
+
+# Playwright output
+test-results/
+playwright-report/
+.playwright-mcp/

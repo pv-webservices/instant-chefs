@@ -27,7 +27,7 @@ const questions = domestic
       },
       {
         q: 'How can I enquire?',
-        a: 'Call +91 8448496343 or prepare a requirement on the contact page to start a conversation on WhatsApp or email.',
+        a: 'Call +91 8448496343 or send your requirement through the contact page form or WhatsApp.',
       },
     ]
   : [faqs[2], faqs[3], faqs[4]];
@@ -37,7 +37,9 @@ const questions = domestic
   title={service.subtitle}
   description={
     service.description +
-    ' Direct interviews, practical chef trials and ongoing support from Instant Chefs in Faridabad.'
+    (domestic
+      ? ' Discuss your requirement with Instant Chefs.'
+      : ' Interviews, chef trials and support from Instant Chefs.')
   }
   faq={questions}
 >

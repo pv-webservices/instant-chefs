@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import Icon from '../components/Icon.astro';
+import Picture from '../components/Picture.astro';
 import { director, features } from '../data/business';
 ---
 
@@ -49,13 +50,10 @@ import { director, features } from '../data/business';
   <section class="section warm-section" aria-labelledby="director-heading">
     <div class="container director">
       <figure class="director-photo" data-reveal>
-        <img
-          src={director.image}
+        <Picture
+          name="director"
           alt={`${director.name}, ${director.role}`}
-          width="800"
-          height="1000"
-          loading="lazy"
-          decoding="async"
+          sizes="(max-width: 800px) 90vw, 380px"
         />
         <figcaption>
           <strong>{director.name}</strong>
@@ -72,7 +70,9 @@ import { director, features } from '../data/business';
           <p>“{director.quote}”</p>
         </blockquote>
         <div class="prose" data-reveal>
-          {director.bio.map((paragraph) => <p>{paragraph}</p>)}
+          {director.bio.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
         </div>
       </div>
     </div>

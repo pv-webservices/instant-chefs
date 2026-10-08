@@ -8,8 +8,13 @@
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0",
     "check": "astro check",
-    "verify": "node scripts/verify.mjs",
-    "format": "prettier --write src scripts astro.config.mjs package.json"
+    "lint": "prettier --check src scripts tests astro.config.mjs playwright.config.ts package.json",
+    "format": "prettier --write src scripts tests astro.config.mjs playwright.config.ts package.json",
+    "test": "node --test \"tests/unit/**/*.test.ts\"",
+    "test:e2e": "playwright test",
+    "audit:seo": "node scripts/audit-seo.mjs",
+    "assets:brand": "node scripts/generate-brand-assets.mjs",
+    "qa": "npm run check && npm run lint && npm test && npm run build && npm run audit:seo && npm run test:e2e"
   },
   "dependencies": {
     "@fontsource-variable/fredoka": "^5.2.0",
@@ -19,8 +24,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^24.19.1",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
+    "sharp": "^0.35.5",
     "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }

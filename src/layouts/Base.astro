@@ -7,26 +7,49 @@ import '../styles/theme.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactCTA from '../components/ContactCTA.astro';
-import { business } from '../data/business';
+import { business, pageNames } from '../data/business';
 interface Props {
+  /** Page title; " | Instant Chefs" is appended unless already present. */
   title: string;
   description: string;
   cta?: boolean;
   faq?: { q: string; a: string }[];
+  /** Utility pages (404, thank-you): "noindex, follow" and no canonical. */
+  noindex?: boolean;
 }
-const { title, description, cta = true, faq } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const isProductionDomain = Astro.site?.protocol === 'https:';
-const breadcrumbs = Astro.url.pathname.split('/').filter(Boolean);
+const { title, description, cta = true, faq, noindex = false } = Astro.props;
+const site = Astro.site!;
+const fullTitle = title.includes(business.name)
+  ? title
+  : `${title} | ${business.name}`;
+const pathname = Astro.url.pathname;
+const canonical = new URL(pathname, site).href;
+const robots = noindex
+  ? 'noindex, follow'
+  : __SITE_INDEXABLE__
+    ? 'index, follow, max-image-preview:large'
+    : 'noindex, nofollow';
+const socialImage = {
+  url: new URL('/images/og-image.jpg', site).href,
+  width: 1200,
+  height: 630,
+  alt: 'Instant Chefs logo with the tagline Hire Smart. Hire Instant Chefs.',
+};
+const organizationId = new URL('/#organization', site).href;
+// Optional Search Console HTML-tag verification, set as a Netlify env var.
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+
 const schema: object[] = [
   {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
+    '@id': organizationId,
     name: business.name,
-    url: Astro.site?.href,
+    url: site.href,
+    logo: new URL('/icon-512x512.png', site).href,
+    image: socialImage.url,
     telephone: '+918448496343',
     email: business.email,
-    image: new URL('/images/brand.webp', Astro.site).href,
     address: {
       '@type': 'PostalAddress',
       streetAddress:
@@ -39,29 +62,34 @@ const schema: object[] = [
     sameAs: [business.instagram],
   },
 ];
-if (breadcrumbs.length)
+if (pathname === '/')
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: business.name,
+    url: site.href,
+    inLanguage: 'en-IN',
+    publisher: { '@id': organizationId },
+  });
+const segments = pathname.split('/').filter(Boolean);
+if (!noindex && segments.length)
   schema.push({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: Astro.site?.href,
-      },
-      ...breadcrumbs.map((crumb, i) => ({
-        '@type': 'ListItem',
-        position: i + 2,
-        name: crumb.replaceAll('-', ' '),
-        item: new URL(
-          '/' + breadcrumbs.slice(0, i + 1).join('/') + '/',
-          Astro.site,
-        ).href,
-      })),
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.href },
+      ...segments.map((_, i) => {
+        const path = '/' + segments.slice(0, i + 1).join('/') + '/';
+        return {
+          '@type': 'ListItem',
+          position: i + 2,
+          name: pageNames[path] ?? segments[i].replaceAll('-', ' '),
+          item: new URL(path, site).href,
+        };
+      }),
     ],
   });
-if (faq)
+if (faq && !noindex)
   schema.push({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -77,6 +105,11 @@ if (faq)
 <html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     <link
       rel="preload"
       href={headingFont}
@@ -91,38 +124,34 @@ if (faq)
       type="font/woff2"
       crossorigin
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} | Instant Chefs</title>
-    <meta name="description" content={description} />
+    {googleVerification && (
+      <meta name="google-site-verification" content={googleVerification} />
+    )}
     <meta name="theme-color" content="#f26a10" />
-    <meta
-      name="robots"
-      content={isProductionDomain ? 'index, follow' : 'noindex, nofollow'}
-    />
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/images/logo-mark-128.webp" type="image/webp" />
-    <link rel="apple-touch-icon" href="/images/logo-mark-256.webp" />
-    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:site_name" content={business.name} />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:site_name" content="Instant Chefs" />
-    <meta property="og:title" content={`${title} | Instant Chefs`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta
-      property="og:image"
-      content={new URL('/images/brand.webp', Astro.site)}
-    />
-    <meta property="og:image:alt" content="Instant Chefs logo" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={`${title} | Instant Chefs`} />
+    {!noindex && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={socialImage.url} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content={String(socialImage.width)} />
+    <meta property="og:image:height" content={String(socialImage.height)} />
+    <meta property="og:image:alt" content={socialImage.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content={new URL('/images/brand.webp', Astro.site)}
-    />
+    <meta name="twitter:image" content={socialImage.url} />
+    <meta name="twitter:image:alt" content={socialImage.alt} />
     <script
       type="application/ld+json"
-      set:html={JSON.stringify(schema).replaceAll('<', '\u003c')}
+      set:html={JSON.stringify(schema).replaceAll('<', '\\u003c')}
     />
   </head>
   <body>

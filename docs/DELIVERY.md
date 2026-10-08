@@ -1,3 +1,5 @@
+> **Historical (October 2026):** these are the original delivery notes. The contact form now sends enquiries through FormSubmit, the site is deployed on Netlify, and verification is done with `npm run qa`. See the README for the current setup.
+
 # Instant Chefs delivery
 
 The requested 17-page service-business website is implemented with Astro, TypeScript and reusable components. The static build generates 18 HTML pages including the custom 404, plus sitemap and robots files. Local built-site preview: http://localhost:4322/.

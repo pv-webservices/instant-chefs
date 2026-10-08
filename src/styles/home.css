@@ -76,19 +76,29 @@
   animation: rise 0.8s var(--ease-out) both;
 }
 .h-pill-dot {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--orange);
-  box-shadow: 0 0 0 0 rgb(242 106 16 / 60%);
-  animation: pulse 2s ease infinite;
+}
+/* Composited (transform/opacity) pulse ring: no per-frame repaint. */
+.h-pill-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgb(242 106 16 / 60%);
+  animation: pulse 2s ease-out infinite;
 }
 @keyframes pulse {
-  70% {
-    box-shadow: 0 0 0 10px rgb(242 106 16 / 0%);
+  from {
+    opacity: 0.8;
+    transform: scale(1);
   }
-  100% {
-    box-shadow: 0 0 0 0 rgb(242 106 16 / 0%);
+  to {
+    opacity: 0;
+    transform: scale(3.5);
   }
 }
 @keyframes rise {
@@ -779,7 +789,7 @@
   position: relative;
   background:
     linear-gradient(rgb(29 23 20 / 92%), rgb(29 23 20 / 94%)),
-    url('/images/kitchen-800.webp') center / cover;
+    url('../assets/images/editorial/kitchen-800.webp') center / cover;
   color: #fff;
 }
 .h-pricing .ic-kicker {
@@ -965,21 +975,23 @@
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 0;
 }
+/* 10px visible dot inside a 24px tap target (transparent padding). */
 .h-slider-dots button {
-  width: 10px;
-  height: 10px;
-  padding: 0;
+  width: 24px;
+  height: 24px;
+  padding: 7px;
   border: 0;
   border-radius: 999px;
   background: #e8cfb2;
+  background-clip: content-box;
   transition:
     width 0.35s var(--ease-out),
     background-color 0.3s ease;
 }
 .h-slider-dots button[aria-current] {
-  width: 30px;
+  width: 44px;
   background: var(--orange);
 }
 

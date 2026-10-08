@@ -1,5 +1,7 @@
 ---
 import Icon from './Icon.astro';
+import logoMark128 from '../assets/images/brand/logo-mark-128.webp';
+import logoMark256 from '../assets/images/brand/logo-mark-256.webp';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import { business, navigation, services } from '../data/business';
 const whatsappText = encodeURIComponent(
@@ -12,13 +14,13 @@ const whatsappText = encodeURIComponent(
   <div class="ic-footer-glow" aria-hidden="true"></div>
   <div class="container ic-footer-grid">
     <div class="ic-footer-brand">
-      <a class="ic-brand" href="/" aria-label="Instant Chefs home">
+      <a class="ic-brand" href="/">
         <img
-          src="/images/logo-mark-128.webp"
-          srcset="/images/logo-mark-128.webp 1x, /images/logo-mark-256.webp 2x"
+          src={logoMark128.src}
+          srcset={`${logoMark128.src} 1x, ${logoMark256.src} 2x`}
           width="64"
           height="64"
-          alt="Instant Chefs logo"
+          alt=""
           loading="lazy"
         />
         <span>
