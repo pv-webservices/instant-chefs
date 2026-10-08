@@ -3,6 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 // Real FormSubmit / WhatsApp traffic is never sent: every request to those
 // hosts is intercepted and answered locally.
 const FORMSUBMIT = 'https://formsubmit.co/instantchef2010@gmail.com';
+const FORMSUBMIT_AJAX = 'https://formsubmit.co/ajax/instantchef2010@gmail.com';
 
 interface CapturedRequest {
   url: string;
@@ -10,7 +11,17 @@ interface CapturedRequest {
   body: string;
 }
 
-async function blockExternal(page: Page): Promise<CapturedRequest[]> {
+interface BlockOptions {
+  /** JSON `success` value FormSubmit's AJAX endpoint answers with. */
+  success?: string;
+  /** Holds the AJAX response until this promise settles. */
+  hold?: Promise<void>;
+}
+
+async function blockExternal(
+  page: Page,
+  { success = 'true', hold }: BlockOptions = {},
+): Promise<CapturedRequest[]> {
   const captured: CapturedRequest[] = [];
   await page
     .context()
@@ -21,6 +32,16 @@ async function blockExternal(page: Page): Promise<CapturedRequest[]> {
         method: request.method(),
         body: request.postData() ?? '',
       });
+      if (request.url().includes('/ajax/')) {
+        await hold;
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          headers: { 'Access-Control-Allow-Origin': '*' },
+          body: JSON.stringify({ success, message: 'Intercepted' }),
+        });
+        return;
+      }
       await route.fulfill({
         status: 200,
         contentType: 'text/html',
@@ -116,19 +137,20 @@ test('invalid email and phone are rejected while entered data is preserved', asy
   expect(captured).toEqual([]);
 });
 
-test('valid submission POSTs once to FormSubmit (intercepted)', async ({
+test('valid submission POSTs once to FormSubmit and opens the Thank You page', async ({
   page,
 }) => {
   const captured = await blockExternal(page);
   await fillValid(page);
   await page.getByLabel('Hiring plan').selectOption({ index: 2 });
   await Promise.all([
-    page.waitForURL(/formsubmit\.co/),
+    page.waitForURL('**/thank-you/'),
     page.locator('#enquiry-submit').click(),
   ]);
+  await expect(page.locator('h1')).toHaveText(/Thank you/);
   expect(captured).toHaveLength(1);
   expect(captured[0].method).toBe('POST');
-  expect(captured[0].url).toBe(FORMSUBMIT);
+  expect(captured[0].url).toBe(FORMSUBMIT_AJAX);
   const body = new URLSearchParams(captured[0].body);
   expect(body.get('name')).toBe('Test Person');
   expect(body.get('email')).toBe('test@example.com');
@@ -139,30 +161,53 @@ test('valid submission POSTs once to FormSubmit (intercepted)', async ({
   expect(body.get('plan')).toMatch(/months · ₹/);
 });
 
-test('submit button is disabled during submission and restored on pageshow', async ({
+test('submit button is disabled while sending, preventing duplicates', async ({
   page,
 }) => {
-  const captured = await blockExternal(page);
+  let release!: () => void;
+  const captured = await blockExternal(page, {
+    hold: new Promise<void>((resolve) => (release = resolve)),
+  });
   await fillValid(page);
-  // Cancel the navigation after the site's own submit handler has run, so the
-  // in-flight state can be observed without leaving the page.
-  await page.evaluate(() =>
-    document
-      .querySelector('#enquiry-form')!
-      .addEventListener('submit', (event) => event.preventDefault()),
-  );
   const button = page.locator('#enquiry-submit');
   await button.click();
-  expect(captured).toEqual([]);
   await expect(button).toBeDisabled();
   await expect(button).toHaveText(/Sending/);
-  await page.evaluate(() =>
-    window.dispatchEvent(
-      new PageTransitionEvent('pageshow', { persisted: true }),
-    ),
-  );
+  await button.click({ force: true });
+  release();
+  await page.waitForURL('**/thank-you/');
+  expect(captured).toHaveLength(1);
+});
+
+test('a rejected submission keeps the entered data and re-enables the button', async ({
+  page,
+}) => {
+  const captured = await blockExternal(page, { success: 'false' });
+  await fillValid(page);
+  const button = page.locator('#enquiry-submit');
+  await button.click();
+  await expect(page.getByRole('alert')).toHaveText(/could not be sent/);
   await expect(button).toBeEnabled();
   await expect(button).toHaveText(/Send enquiry/);
+  await expect(page.locator('#full-name')).toHaveValue('Test Person');
+  await expect(page).toHaveURL(/\/contact\/$/);
+  expect(captured).toHaveLength(1);
+});
+
+test('without JavaScript the form posts natively to FormSubmit', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  const captured = await blockExternal(page);
+  await page.goto('/contact/');
+  await fillValid(page);
+  await Promise.all([
+    page.waitForURL(/formsubmit\.co/),
+    page.locator('#enquiry-submit').click(),
+  ]);
+  expect(captured.map((c) => c.url)).toEqual([FORMSUBMIT]);
+  await context.close();
 });
 
 test('WhatsApp button pre-fills a message without sending the form', async ({

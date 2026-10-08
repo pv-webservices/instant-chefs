@@ -65,6 +65,43 @@ function setSubmitting(button: HTMLButtonElement, submitting: boolean): void {
   if (label) label.textContent = submitting ? 'Sending…' : 'Send enquiry';
 }
 
+const SEND_FAILED = `Sorry, your enquiry could not be sent. Your details are still here, so please try again, or call ${business.phone} or message us on WhatsApp.`;
+
+/** Path of the `_next` Thank You page, kept on the current origin. */
+function thankYouUrl(form: HTMLFormElement): string {
+  const next = form.querySelector<HTMLInputElement>('input[name="_next"]');
+  return next?.value
+    ? new URL(next.value, window.location.href).pathname
+    : '/thank-you/';
+}
+
+/**
+ * Posts the form to FormSubmit's AJAX endpoint. Resolves to an empty string on
+ * success, or a message for the visitor when the enquiry was not accepted.
+ */
+async function sendEnquiry(form: HTMLFormElement): Promise<string> {
+  const endpoint = form.action.replace(
+    'https://formsubmit.co/',
+    'https://formsubmit.co/ajax/',
+  );
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      // URL-encoded keeps this a simple CORS request (no preflight).
+      body: new URLSearchParams(
+        new FormData(form) as unknown as Record<string, string>,
+      ),
+    });
+    const result = (await response.json().catch(() => ({}))) as {
+      success?: string | boolean;
+    };
+    return response.ok && String(result.success) === 'true' ? '' : SEND_FAILED;
+  } catch {
+    return SEND_FAILED;
+  }
+}
+
 export function initEnquiryForm(): void {
   const form = document.querySelector<HTMLFormElement>('#enquiry-form');
   if (!form) return;
@@ -108,8 +145,21 @@ export function initEnquiryForm(): void {
       return;
     }
     summary.hidden = true;
+    // Send through FormSubmit's AJAX endpoint and open our own Thank You page,
+    // instead of relying on FormSubmit's `_next` redirect. Without JavaScript
+    // the form still posts normally with `_next` as the fallback.
+    event.preventDefault();
     // Prevent duplicate submissions while FormSubmit processes the request.
     setSubmitting(submit, true);
+    void sendEnquiry(form).then((error) => {
+      if (!error) {
+        window.location.assign(thankYouUrl(form));
+        return;
+      }
+      setSubmitting(submit, false);
+      summary.textContent = error;
+      summary.hidden = false;
+    });
   });
 
   // Restore the button when the page is shown again from the back/forward cache.
